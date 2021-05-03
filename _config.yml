@@ -97,7 +97,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+# theme: cactus
+# CACTUS theme : https://github.com/probberechts/hexo-theme-cactus/blob/master/README.md
+theme: element
+# ELEMENT theme : https://github.com/artchen/hexo-theme-element
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
