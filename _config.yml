@@ -98,9 +98,9 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-# theme: cactus
+theme: cactus
 # CACTUS theme : https://github.com/probberechts/hexo-theme-cactus/blob/master/README.md
-theme: element
+# theme: element
 # ELEMENT theme : https://github.com/artchen/hexo-theme-element
 
 # Deployment
