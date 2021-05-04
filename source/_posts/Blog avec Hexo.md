@@ -1,5 +1,5 @@
 ---
-title: Hello world ! (Blog avec Hexo)
+title: Blog avec Hexo
 date: 2021-05-03 07:04:45
 tags:
 ---
