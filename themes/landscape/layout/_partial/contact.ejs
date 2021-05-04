@@ -1,0 +1,86 @@
+<article id="<%= post.layout %>-<%= post.slug %>" class="h-entry article article-type-<%= post.layout %>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+      </header>
+    <% } %>
+    <div class="e-content article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+        <form
+          action="https://formspree.io/f/xdoyawyl"
+          method="POST"
+          style="margin-bottom: 2em;"
+        >
+        <div style="margin-bottom: 1em;">
+          <label>
+            Votre e-mail * : 
+          </label>
+          <input id="email" type="email" name="_replyto">
+        </div>
+        <div>
+          <label>
+            Votre message * :
+            <textarea id="message" name="message" style="width: 100%; max-width: 100%;height: 200px;max-height: 500px;"></textarea>
+          </label>
+        </div>
+        <button type="submit">Envoyer</button>
+        </form>
+        <script>
+          const email = document.getElementById("email");
+          const message = document.getElementById("message");
+          const mandatoryEmailText = 'Merci de fournir une valeur pour l\'email.';
+          const formatEmailMessage = 'Merci de fournir une adresse email valide.';
+          const mandatoryMessageText = 'Merci de remplir le champ message.';
+          email.setCustomValidity(mandatoryEmailText);
+          message.setCustomValidity(mandatoryMessageText);
+
+          email.addEventListener("input", function (event) {
+            if (email.value == '') {
+              email.setCustomValidity(mandatoryEmailText);
+            } else if (email.validity.typeMismatch) {
+              email.setCustomValidity(formatEmailMessage);
+            } else {
+              email.setCustomValidity('');
+            }
+          });
+          message.addEventListener("input", function (event) {
+            if (message.value == '') {
+              message.setCustomValidity(mandatoryMessageText);
+            } else {
+              message.setCustomValidity('');
+            }
+          });
+        </script>
+      <% } %>
+    </div>
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+<% if (!index && post.comments && config.disqus_shortname){ %>
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+<% } %>
+<% if (!index && post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
+  <section id="comments" class="vcomment">
+
+  </section>
+<% } %>
