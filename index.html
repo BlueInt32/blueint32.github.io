@@ -72,6 +72,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Sucre-syntaxique-des-constructeurs-Typescript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" class="article-date">
+  <time class="dt-published" datetime="2021-05-04T03:32:01.000Z" itemprop="datePublished">2021-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/">Sucre syntaxique des constructeurs Typescript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que l’on pouvait écrire des constructeurs typescript qui automatisaient la<br>creation de variables locales, cela s’appelle “Parameter properties”.</p>
+<p>Plutôt que d’écrire :</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> brand: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">brand: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.brand = brand;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>on peut écrire</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> brand: <span class="built_in">string</span></span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Plus d’informations sur les parameter properties <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties">ici</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="cko9i77sr00019onfcdjfdost" data-title="Sucre syntaxique des constructeurs Typescript" class="article-share-link">Partager</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Welcome-to-Sbu-TILs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/03/Welcome-to-Sbu-TILs/" class="article-date">
@@ -94,18 +140,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Bienvenue sur ce blog !</p>
-<p>TIL veut dire “Today I Learnt”, c’est à dire “Aujourd’hui j’ai appris”.</p>
-<p>L’objectif est de me faire prendre conscience à moyen/long terme de la quantité de choses que je peux apprendre<br>au cours du temps.</p>
-<p>En effet, en temps que développeur, je suis très sujet au <a target="_blank" rel="noopener" href="https://fr.wikipedia.org/wiki/Syndrome_de_l%27imposteur">syndrome de l’imposteur</a>.<br>Afin de lutter contre ça, j’ai pensé que je pouvais essayer de m’exprimer régulièrement et publiquement sur les choses que j’apprends<br>au quotidien.</p>
-<hr>
-<p>Sans transition, aujourd’hui je commence à peine à prendre en main l’outil de blog que j’ai utilisé pour écrire ce premier billet :<br><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>. Il a l’air très developer-friendly, ce qui tombe plutôt bien (je suis développeur web).<br>J’apprécie le coté open-source et la rapidité avec laquelle on peut écrire des billets, en markdown, qui est un format que je trouve très puissant.<br>Il ne me reste plus qu’à trouver comment déployer tout ça quelque part ! 😏</p>
-<p>Edit: c’était vraiment très simple, avec <a target="_blank" rel="noopener" href="https://hexo.io/docs/github-pages.html">les actions Github</a> !</p>
+        <p>AJA comment prendre en main l’outil de blog que j’ai utilisé pour écrire ce premier billet :<br><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>. Il a l’air très developer-friendly.</p>
+<p>J’apprécie le coté open-source et la rapidité avec laquelle on peut écrire des billets, en markdown, qui est un format que je trouve très pratique.<br>Il ne me reste plus qu’à trouver comment déployer tout ça quelque part ! 😏</p>
+<p>Edit: c’était vraiment très simple, avec <a target="_blank" rel="noopener" href="https://hexo.io/docs/github-pages.html">la page d’aide dédiée pour les pages Github</a> !</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Welcome-to-Sbu-TILs/" data-id="cko9h051o00018zlz9sds2ouz" data-title="Hello world ! (Blog avec Hexo)" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Welcome-to-Sbu-TILs/" data-id="cko9i77su00029onfezzv015d" data-title="Hello world ! (Blog avec Hexo)" class="article-share-link">Partager</a>
       
       
       
@@ -146,6 +188,10 @@
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/">Sucre syntaxique des constructeurs Typescript</a>
+          </li>
         
           <li>
             <a href="/2021/05/03/Welcome-to-Sbu-TILs/">Hello world ! (Blog avec Hexo)</a>
