@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: BlueInt32 TIL
-subtitle: "Une année de connaissances"
+title: Knowledge dump
+subtitle: ""
 description: ""
-keywords:
+keywords: developpement, français, code
 author: BlueInt32
-language: en
-timezone: ""
+language: fr
+timezone: "FR"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://blueint32.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,8 +97,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-# theme: cactus
+# theme: landscape
+theme: cactus
 # CACTUS theme : https://github.com/probberechts/hexo-theme-cactus/blob/master/README.md
 # theme: element
 # ELEMENT theme : https://github.com/artchen/hexo-theme-element
