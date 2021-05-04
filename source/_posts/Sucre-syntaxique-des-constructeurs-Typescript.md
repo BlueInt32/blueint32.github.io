@@ -1,7 +1,7 @@
 ---
 title: Sucre syntaxique des constructeurs Typescript
 date: 2021-05-04 05:32:01
-tags:
+tags: typescript
 ---
 
 AJA que l'on pouvait écrire des constructeurs typescript qui automatisaient la
