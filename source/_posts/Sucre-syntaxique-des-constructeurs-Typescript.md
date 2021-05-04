@@ -26,4 +26,4 @@ class Car {
 }
 ```
 
-Plus d'informations sur les parameter properties [ici](https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties)
+Plus d'informations sur les parameter properties [ici](https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties).
