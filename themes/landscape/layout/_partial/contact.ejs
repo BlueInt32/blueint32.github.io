@@ -28,12 +28,12 @@
           <label>
             Votre e-mail * : 
           </label>
-          <input id="email" type="email" name="_replyto">
+          <input id="email" type="email" required name="_replyto">
         </div>
         <div>
           <label>
             Votre message * :
-            <textarea id="message" name="message" style="width: 100%; max-width: 100%;height: 200px;max-height: 500px;"></textarea>
+            <textarea id="message" required name="message" style="width: 100%; max-width: 100%;height: 200px;max-height: 500px;"></textarea>
           </label>
         </div>
         <button type="submit">Envoyer</button>
@@ -44,10 +44,15 @@
           const mandatoryEmailText = 'Merci de fournir une valeur pour l\'email.';
           const formatEmailMessage = 'Merci de fournir une adresse email valide.';
           const mandatoryMessageText = 'Merci de remplir le champ message.';
-          email.setCustomValidity(mandatoryEmailText);
-          message.setCustomValidity(mandatoryMessageText);
 
-          email.addEventListener("input", function (event) {
+          email.addEventListener("input", emailValidation);
+          email.addEventListener("invalid", emailValidation);
+
+          message.addEventListener("input", messageValidation);
+          message.addEventListener("invalid", messageValidation);
+
+          function emailValidation(event) {
+            console.log('trigger validation email');
             if (email.value == '') {
               email.setCustomValidity(mandatoryEmailText);
             } else if (email.validity.typeMismatch) {
@@ -55,14 +60,15 @@
             } else {
               email.setCustomValidity('');
             }
-          });
-          message.addEventListener("input", function (event) {
+          }
+          function messageValidation(event) {
+            console.log('trigger validation message');
             if (message.value == '') {
               message.setCustomValidity(mandatoryMessageText);
             } else {
               message.setCustomValidity('');
             }
-          });
+          }
         </script>
       <% } %>
     </div>
