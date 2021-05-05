@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daily knowledge extract</title>
+  <icon>http://blueint32.github.io/icon.png</icon>
+  
+  <link href="http://blueint32.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://blueint32.github.io/"/>
+  <updated>2021-05-05T18:11:33.033Z</updated>
+  <id>http://blueint32.github.io/</id>
+  
+  <author>
+    <name>BlueInt32</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Injection du nom de la branche git active dans bash</title>
+    <link href="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/"/>
+    <id>http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/</id>
+    <published>2021-05-05T17:31:54.000Z</published>
+    <updated>2021-05-05T18:11:33.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA que je pouvais économiser 4 secondes à chaque fois que je veux &lt;code&gt;push&lt;/code&gt; une branche à distance !&lt;/p&gt;
+&lt;p&gt;En effet, dans le</summary>
+        
+      
+    
+    
+    
+    
+    <category term="git" scheme="http://blueint32.github.io/tags/git/"/>
+    
+    <category term="bash" scheme="http://blueint32.github.io/tags/bash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git squash sur plusieurs commits avec cherry-pick</title>
+    <link href="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/"/>
+    <id>http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/</id>
+    <published>2021-05-05T17:18:13.000Z</published>
+    <updated>2021-05-05T18:11:33.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la</summary>
+        
+      
+    
+    
+    
+    
+    <category term="git" scheme="http://blueint32.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sucre syntaxique des constructeurs Typescript</title>
+    <link href="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/"/>
+    <id>http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/</id>
+    <published>2021-05-04T03:32:01.000Z</published>
+    <updated>2021-05-05T18:11:33.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA que l’on pouvait écrire des constructeurs typescript qui automatisaient la creation de variables locales, cela s’appelle “Parameter</summary>
+        
+      
+    
+    
+    
+    
+    <category term="typescript" scheme="http://blueint32.github.io/tags/typescript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Blog avec Hexo</title>
+    <link href="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/"/>
+    <id>http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/</id>
+    <published>2021-05-03T05:04:45.000Z</published>
+    <updated>2021-05-05T18:11:33.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA comment prendre en main l’outil de blog que j’ai utilisé pour écrire ce premier billet : &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;. Il a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
