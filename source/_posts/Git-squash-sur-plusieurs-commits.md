@@ -15,17 +15,17 @@ commit 1 -> commit 2 -> commit 3
 316e63c     ab0f801     3ae6aa6
 ```
 
-Mais vous voulez obtenir sur la branche HF :
+Mais vous voulez obtenir sur la branche `HF` :
 
 ```
 commits 1 + 2 + 3
 xxxxxxxx
 ```
 
-La commance git cherry-pick permet d'appliquer les changements d'un set de commits sans les enregistrer, avec le flag `-n` :
+La commande git [cherry-pick](https://git-scm.com/docs/git-cherry-pick) permet d'appliquer les changements d'un set de commits sans les enregistrer, avec le flag `-n` :
 
-```bash
+```shell
 $ git cherry-pick -n 316e63c ab0f801 3ae6aa6
 ```
 
-Les changements sont dans le stage de git, il ne reste plus qu'à faire le commit avec un nouveau message probablement mieux approprié pour une branche de HF.
+Les changements sont dans le stage de git, il ne reste plus qu'à faire le commit avec un nouveau message probablement plus approprié pour une branche de hotfix.
