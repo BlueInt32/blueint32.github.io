@@ -24,7 +24,7 @@ xxxxxxxx
 
 La commande git [cherry-pick](https://git-scm.com/docs/git-cherry-pick) permet d'appliquer les changements d'un set de commits sans les enregistrer, avec le flag `-n` :
 
-```shell
+```bash
 $ git cherry-pick -n 316e63c ab0f801 3ae6aa6
 ```
 
