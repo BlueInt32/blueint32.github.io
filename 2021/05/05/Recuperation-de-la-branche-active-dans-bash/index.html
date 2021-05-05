@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Contact | Daily knowledge extract</title>
+  <title>Injection du nom de la branche git active dans bash | Daily knowledge extract</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Pour me joindre, merci de remplir ce petit formulaire. Je me ferai un plaisir de vous répondre. 🙂">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Contact">
-<meta property="og:url" content="http://blueint32.github.io/contact/index.html">
+  <meta name="description" content="AJA que je pouvais économiser 4 secondes à chaque fois que je veux push une branche à distance ! En effet, dans le cadre profesionnel, je suis souvent amené à créer des noms de branches du genre : 1$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Injection du nom de la branche git active dans bash">
+<meta property="og:url" content="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/index.html">
 <meta property="og:site_name" content="Daily knowledge extract">
-<meta property="og:description" content="Pour me joindre, merci de remplir ce petit formulaire. Je me ferai un plaisir de vous répondre. 🙂">
+<meta property="og:description" content="AJA que je pouvais économiser 4 secondes à chaque fois que je veux push une branche à distance ! En effet, dans le cadre profesionnel, je suis souvent amené à créer des noms de branches du genre : 1$">
 <meta property="og:locale" content="fr_FR">
-<meta property="article:published_time" content="2021-05-04T04:41:22.000Z">
+<meta property="article:published_time" content="2021-05-05T17:31:54.000Z">
 <meta property="article:modified_time" content="2021-05-05T17:55:33.027Z">
 <meta property="article:author" content="BlueInt32">
-<meta property="article:tag" content="developpement, français, code">
+<meta property="article:tag" content="git, bash">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Daily knowledge extract" type="application/atom+xml">
@@ -78,8 +78,11 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="contactpage-" class="h-entry article article-type-contactpage" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Recuperation-de-la-branche-active-dans-bash" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
+    <a href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" class="article-date">
+  <time class="dt-published" datetime="2021-05-05T17:31:54.000Z" itemprop="datePublished">2021-05-05</time>
+</a>
     
   </div>
   <div class="article-inner">
@@ -89,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Contact
+      Injection du nom de la branche git active dans bash
     </h1>
   
 
@@ -97,65 +100,49 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Pour me joindre, merci de remplir ce petit formulaire.</p>
-<p>Je me ferai un plaisir de vous répondre. 🙂</p>
+        <p>AJA que je pouvais économiser 4 secondes à chaque fois que je veux <code>push</code> une branche à distance !</p>
+<p>En effet, dans le cadre profesionnel, je suis souvent amené à créer des noms de branches du genre :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -d JIRA-14523-nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
 
-        <form
-          action="https://formspree.io/f/xdoyawyl"
-          method="POST"
-          style="margin-bottom: 2em;"
-        >
-        <div style="margin-bottom: 1em;">
-          <label>
-            Votre e-mail * : 
-          </label>
-          <input id="email" type="email" required name="_replyto">
-        </div>
-        <div>
-          <label>
-            Votre message * :
-            <textarea id="message" required name="message" style="width: 100%; max-width: 100%;height: 200px;max-height: 500px;"></textarea>
-          </label>
-        </div>
-        <button type="submit">Envoyer</button>
-        </form>
-        <script>
-          const email = document.getElementById("email");
-          const message = document.getElementById("message");
-          const mandatoryEmailText = 'Merci de fournir une valeur pour l\'email.';
-          const formatEmailMessage = 'Merci de fournir une adresse email valide.';
-          const mandatoryMessageText = 'Merci de remplir le champ message.';
+<p>Pour créer la branche, je n’ai pas le choix, je dois tout écrire au moins une fois.</p>
+<p>Mais à la fin de la journée, je trouve pénible de devoir le retaper, typiquement lorsque je dois <code>push</code> ma branche pour faire la pull-request :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
 
-          email.addEventListener("input", emailValidation);
-          email.addEventListener("invalid", emailValidation);
+<p>Dans git bash, le nom de la branche courante est affiché dans le prompt donc je peux toujours la copier/coller, mais je préfère garder les mains sur le clavier quand j’utilise le terminal.</p>
+<p>Pour régler ce grave problème 😏, on peut créer un alias dans le fichier <code>.bashrc</code> du compte de la machine :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> cb=<span class="string">&#x27;git symbolic-ref HEAD --short&#x27;</span></span><br></pre></td></tr></table></figure>
 
-          message.addEventListener("input", messageValidation);
-          message.addEventListener("invalid", messageValidation);
+<p>Ce qui permet de récupérer le nom de la branche courante sans le retaper :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cb</span></span><br><span class="line">JIRA-14523-nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
 
-          function emailValidation(event) {
-            console.log('trigger validation email');
-            if (email.value == '') {
-              email.setCustomValidity(mandatoryEmailText);
-            } else if (email.validity.typeMismatch) {
-              email.setCustomValidity(formatEmailMessage);
-            } else {
-              email.setCustomValidity('');
-            }
-          }
-          function messageValidation(event) {
-            console.log('trigger validation message');
-            if (message.value == '') {
-              message.setCustomValidity(mandatoryMessageText);
-            } else {
-              message.setCustomValidity('');
-            }
-          }
-        </script>
+<p>En revanche, il n’est pas possible d’injecter tel quel cet alias dans une commande git car git penserait qu’il s’agit d’un nom de branche et va remonter une erreur. Pour palier à cela, il suffit d’entourer l’alias avec des `backquotes` :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin `cb`</span><br></pre></td></tr></table></figure>
+
+<p>Et voilà, plus besoin de prendre la souris pour copier le nom de la branche !</p>
+
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckobrh5vq000486nfdbf7hykn" data-title="Injection du nom de la branche git active dans bash" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-bash/" rel="tag">git, bash</a></li></ul>
+
+    </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Git squash sur plusieurs commits avec cherry-pick</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
