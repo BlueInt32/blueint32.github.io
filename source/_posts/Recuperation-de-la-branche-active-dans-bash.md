@@ -1,7 +1,9 @@
 ---
 title: Injection du nom de la branche git active dans bash
 date: 2021-05-05 19:31:54
-tags: git bash
+tags:
+  - git
+  - bash
 ---
 
 AJA que je pouvais économiser 4 secondes à chaque fois que je veux `push` une branche à distance !
