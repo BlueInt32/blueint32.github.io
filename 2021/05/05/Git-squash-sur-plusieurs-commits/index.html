@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>À propos | Daily knowledge extract</title>
+  <title>Git squash sur plusieurs commits avec cherry-pick | Daily knowledge extract</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Bienvenue sur ce blog ! Le format est très simple, sous la forme de “AJA”, traduction française de TIL (“Today I learned”, sigle popularisé par ce fameux subreddit), j’explique à ma façon les nouveaux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="À propos">
-<meta property="og:url" content="http://blueint32.github.io/about/index.html">
+  <meta name="description" content="AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la volée. Le scénario typique pour faire cette manip est le suivant. Vous av">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git squash sur plusieurs commits avec cherry-pick">
+<meta property="og:url" content="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/index.html">
 <meta property="og:site_name" content="Daily knowledge extract">
-<meta property="og:description" content="Bienvenue sur ce blog ! Le format est très simple, sous la forme de “AJA”, traduction française de TIL (“Today I learned”, sigle popularisé par ce fameux subreddit), j’explique à ma façon les nouveaux">
+<meta property="og:description" content="AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la volée. Le scénario typique pour faire cette manip est le suivant. Vous av">
 <meta property="og:locale" content="fr_FR">
-<meta property="article:published_time" content="2021-05-04T03:41:08.000Z">
+<meta property="article:published_time" content="2021-05-05T17:18:13.000Z">
 <meta property="article:modified_time" content="2021-05-05T17:28:17.758Z">
 <meta property="article:author" content="BlueInt32">
-<meta property="article:tag" content="developpement, français, code">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Daily knowledge extract" type="application/atom+xml">
@@ -78,10 +78,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Git-squash-sur-plusieurs-commits" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/about/index.html" class="article-date">
-  <time class="dt-published" datetime="2021-05-04T03:41:08.000Z" itemprop="datePublished">2021-05-04</time>
+    <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/" class="article-date">
+  <time class="dt-published" datetime="2021-05-05T17:18:13.000Z" itemprop="datePublished">2021-05-05</time>
 </a>
     
   </div>
@@ -92,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      À propos
+      Git squash sur plusieurs commits avec cherry-pick
     </h1>
   
 
@@ -100,23 +100,42 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Bienvenue sur ce blog !</p>
-<p>Le format est très simple, sous la forme de “AJA”, traduction française de TIL (“Today I learned”, sigle popularisé par <a target="_blank" rel="noopener" href="https://www.reddit.com/r/todayilearned/">ce fameux subreddit</a>), j’explique à ma façon les nouveaux concepts, techniques, choses, … que j’apprends au quotidien.</p>
-<p>L’objectif est de me faire prendre conscience à moyen/long terme de la quantité de choses que je peux apprendre au cours du temps.</p>
-<p>En effet, en tant que développeur, je suis sujet au <a target="_blank" rel="noopener" href="https://fr.wikipedia.org/wiki/Syndrome_de_l%27imposteur">syndrome de l’imposteur</a>.<br>Je pense que m’exprimer régulièrement et publiquement sur les choses que j’apprends au quotidien pourra m’aider.</p>
-<p>Et si par hasard vous avez appris quelque chose en tombant sur ce blog, tant mieux ! 😃</p>
+        <p>AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la volée.</p>
+<p>Le scénario typique pour faire cette manip est le suivant. Vous avez une série de commits sur votre branche <code>main</code>, et vous voulez appliquer l’ensemble des patchs sur une branche de prod pour un hotfix avec un unique commit qui réunit tous les changements.</p>
+<p>Sur la branche main :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commit 1 -&gt; commit 2 -&gt; commit 3</span><br><span class="line">316e63c     ab0f801     3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Mais vous voulez obtenir sur la branche HF :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commits 1 + 2 + 3</span><br><span class="line">xxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>La commance git cherry-pick permet d’appliquer les changements d’un set de commits sans les enregistrer, avec le flag <code>-n</code> :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick -n 316e63c ab0f801 3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Les changements sont dans le stage de git, il ne reste plus qu’à faire le commit avec un nouveau message probablement mieux approprié pour une branche de HF.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/about/index.html" data-id="ckobqi5hg00008klz7cfrbiti" data-title="À propos" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckobqi5hm00038klz0rpqb2wb" data-title="Git squash sur plusieurs commits avec cherry-pick" class="article-share-link">Partager</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Sucre syntaxique des constructeurs Typescript</div>
+    </a>
+  
+</nav>
+
   
 </article>
 

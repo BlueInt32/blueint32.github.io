@@ -76,6 +76,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Git-squash-sur-plusieurs-commits" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/" class="article-date">
+  <time class="dt-published" datetime="2021-05-05T17:18:13.000Z" itemprop="datePublished">2021-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/05/Git-squash-sur-plusieurs-commits/">Git squash sur plusieurs commits avec cherry-pick</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la volée.</p>
+<p>Le scénario typique pour faire cette manip est le suivant. Vous avez une série de commits sur votre branche <code>main</code>, et vous voulez appliquer l’ensemble des patchs sur une branche de prod pour un hotfix avec un unique commit qui réunit tous les changements.</p>
+<p>Sur la branche main :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commit 1 -&gt; commit 2 -&gt; commit 3</span><br><span class="line">316e63c     ab0f801     3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Mais vous voulez obtenir sur la branche HF :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commits 1 + 2 + 3</span><br><span class="line">xxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>La commance git cherry-pick permet d’appliquer les changements d’un set de commits sans les enregistrer, avec le flag <code>-n</code> :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick -n 316e63c ab0f801 3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Les changements sont dans le stage de git, il ne reste plus qu’à faire le commit avec un nouveau message probablement mieux approprié pour une branche de HF.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckobqi5hm00038klz0rpqb2wb" data-title="Git squash sur plusieurs commits avec cherry-pick" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Sucre-syntaxique-des-constructeurs-Typescript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" class="article-date">
@@ -110,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="cko9moq9200038clz7vmxds0v" data-title="Sucre syntaxique des constructeurs Typescript" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckobqi5ho00048klz6e9pg5w8" data-title="Sucre syntaxique des constructeurs Typescript" class="article-share-link">Partager</a>
       
       
       
@@ -155,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="cko9moq8y00018clzhac9dowq" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckobqi5hj00018klz9b2z6dl2" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -180,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
     </div>
   </div>
 
@@ -201,6 +253,10 @@
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/">Git squash sur plusieurs commits avec cherry-pick</a>
+          </li>
         
           <li>
             <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/">Sucre syntaxique des constructeurs Typescript</a>
