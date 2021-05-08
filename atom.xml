@@ -6,7 +6,7 @@
   <link href="http://blueint32.github.io/atom.xml" rel="self"/>
   
   <link href="http://blueint32.github.io/"/>
-  <updated>2021-05-05T18:11:33.033Z</updated>
+  <updated>2021-05-08T06:03:48.971Z</updated>
   <id>http://blueint32.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Les web components et les frameworks JS</title>
+    <link href="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/"/>
+    <id>http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/</id>
+    <published>2021-05-08T05:29:50.000Z</published>
+    <updated>2021-05-08T06:03:48.971Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA la distinction entre &lt;a href=&quot;https://vuejs.org/v2/guide/components.html&quot;&gt;un composant VueJs&lt;/a&gt; et un &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="vuejs" scheme="http://blueint32.github.io/tags/vuejs/"/>
+    
+    <category term="html" scheme="http://blueint32.github.io/tags/html/"/>
+    
+    <category term="web components" scheme="http://blueint32.github.io/tags/web-components/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Injection du nom de la branche git active dans bash</title>
     <link href="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/"/>
     <id>http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/</id>
     <published>2021-05-05T17:31:54.000Z</published>
-    <updated>2021-05-05T18:11:33.033Z</updated>
+    <updated>2021-05-08T06:03:48.971Z</updated>
     
     
       
@@ -47,7 +74,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/"/>
     <id>http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/</id>
     <published>2021-05-05T17:18:13.000Z</published>
-    <updated>2021-05-05T18:11:33.033Z</updated>
+    <updated>2021-05-08T06:03:48.971Z</updated>
     
     
       
@@ -70,7 +97,7 @@
     <link href="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/"/>
     <id>http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/</id>
     <published>2021-05-04T03:32:01.000Z</published>
-    <updated>2021-05-05T18:11:33.033Z</updated>
+    <updated>2021-05-08T06:03:48.971Z</updated>
     
     
       
@@ -93,7 +120,7 @@
     <link href="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/"/>
     <id>http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/</id>
     <published>2021-05-03T05:04:45.000Z</published>
-    <updated>2021-05-05T18:11:33.033Z</updated>
+    <updated>2021-05-08T06:03:48.971Z</updated>
     
     
       
