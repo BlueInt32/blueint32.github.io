@@ -76,6 +76,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Le-flag-intent-to-add-dans-git-add" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/" class="article-date">
+  <time class="dt-published" datetime="2021-05-12T06:56:51.000Z" itemprop="datePublished">2021-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">Le flag -N ou &#34;--intent-to-add&#34; de git add</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que l’on pouvait spécifier à git qu’on <em>prévoyait d’ajouter</em> des fichiers sans forcément les ajouter tout de suite à l’index !</p>
+<p>Mais pourquoi voudrait-on faire ça ? Eh bien il peut être embêtant dans git de faire des différentiels lorsque certains fichiers viennent d’être rajoutés, car ceux-ci seront tout simplement ignorés par git tant qu’il n’aura pas été mis au courant que ces fichiers ont un rôle dans la base de code (pour autant que git sache, on pourrait très bien vouloir ajouter ces fichiers dans le <code>.gitignore</code>).</p>
+<p>Jusqu’ici, je détournais ce comportement en ajoutant tous les fichiers avec</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
+
+<p>Ainsi, les nouveaux fichiers apparaissaient et je pouvais vérifier mon différentiel avec</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff-tool --staged</span><br></pre></td></tr></table></figure>
+
+<p>L’ennui avec cette approche, c’est que l’opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l’analyse du différentiel n’est plus possible car tous les fichiers sont déjà dans l’index…</p>
+<p>Mais ça, c’était avant. Il est possible de spécifier à git que des fichiers vont être ajoutés, sans les ajouter concrètement tout de suite à l’index :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add --intent-to-add .</span><br><span class="line"> ou</span><br><span class="line">$ git add -N .</span><br></pre></td></tr></table></figure>
+
+<p>Les nouveaux fichiers ont alors bien une entrée dans l’index, sans contenu effectif : le diff-tool les verra sans qu’ils soient encore concrètement dans l’index. C’est du temps de gagné ! <img src="/2021/05/12/Le-flag-intent-to-add-dans-git-add/joy.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckol4w9jn0004ltni5lnu6qnd" data-title="Le flag -N ou &#34;--intent-to-add&#34; de git add" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Syntaxe-alternative-pour-tests-exceptions-csharp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" class="article-date">
+  <time class="dt-published" datetime="2021-05-12T06:36:56.000Z" itemprop="datePublished">2021-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/">Syntaxe alternative pour les tests d&#39;exception en C#</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA qu’il existait une alternative pour tester les exceptions en C#. Depuis toujours j’utilisais la syntaxe suivante :</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> c = a / b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Cette syntaxe est assez limitée car elle ne permet pas d’effectuer d’assertions sur l’exception levée pendant l’exécution du test.</p>
+<p>Certes, on peut insérer un bloc try/catch et effectuer des assertions comme ceci:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;</span><br><span class="line">    catch(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, e.Message);</span><br><span class="line">        <span class="keyword">throw</span>; <span class="comment">// throw nécéssaire pour que le décorateur Expected soit honoré</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Mais ce n’est pas très élégant 😢.</p>
+<p>Or il existe une autre syntaxe bien plus pratique :</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ex = Assert.ThrowsException&lt;DivideByZeroException&gt;(() =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;);</span><br><span class="line">    Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, ex.Message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>La lisibilité des tests est améliorée, les code reviews sont plus sereines et le monde se porte mieux. 🌈</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckol4w9jv0008ltni5l7ecbw3" data-title="Syntaxe alternative pour les tests d&#39;exception en C#" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-VueJs-et-les-Web-components" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/08/VueJs-et-les-Web-components/" class="article-date">
@@ -108,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckofciows0007nnnj2qww698p" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckol4w9k5000kltni287c3o4h" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -167,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckofciown0004nnnjc1xc2zrj" data-title="Injection du nom de la branche git active dans bash" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckol4w9js0006ltni2ezfeu9j" data-title="Injection du nom de la branche git active dans bash" class="article-share-link">Partager</a>
       
       
       
@@ -219,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckofciowl0003nnnjav391a0c" data-title="Git squash sur plusieurs commits avec cherry-pick" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckol4w9jl0003ltnignsrdtt3" data-title="Git squash sur plusieurs commits avec cherry-pick" class="article-share-link">Partager</a>
       
       
       
@@ -267,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckofciowq0006nnnjavvw2cmb" data-title="Sucre syntaxique des constructeurs Typescript" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckol4w9ju0007ltnibt9dcvw4" data-title="Sucre syntaxique des constructeurs Typescript" class="article-share-link">Partager</a>
       
       
       
@@ -312,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckofciowh0001nnnj6kur0nxk" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckol4w9jh0001ltni73gsfa86" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -337,7 +442,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -360,6 +465,14 @@
       <ul>
         
           <li>
+            <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">Le flag -N ou &#34;--intent-to-add&#34; de git add</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/">Syntaxe alternative pour les tests d&#39;exception en C#</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/08/VueJs-et-les-Web-components/">Les web components et les frameworks JS</a>
           </li>
         
@@ -369,14 +482,6 @@
         
           <li>
             <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/">Git squash sur plusieurs commits avec cherry-pick</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/">Sucre syntaxique des constructeurs Typescript</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/03/Blog%20avec%20Hexo/">Blog avec Hexo</a>
           </li>
         
       </ul>

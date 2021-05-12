@@ -6,7 +6,7 @@
   <link href="http://blueint32.github.io/atom.xml" rel="self"/>
   
   <link href="http://blueint32.github.io/"/>
-  <updated>2021-05-08T06:07:45.781Z</updated>
+  <updated>2021-05-12T07:21:07.382Z</updated>
   <id>http://blueint32.github.io/</id>
   
   <author>
@@ -17,11 +17,58 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Le flag -N ou &quot;--intent-to-add&quot; de git add</title>
+    <link href="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/"/>
+    <id>http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/</id>
+    <published>2021-05-12T06:56:51.000Z</published>
+    <updated>2021-05-12T07:21:07.382Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA que l’on pouvait spécifier à git qu’on &lt;em&gt;prévoyait d’ajouter&lt;/em&gt; des fichiers sans forcément les ajouter tout de suite à l’index</summary>
+        
+      
+    
+    
+    
+    
+    <category term="git" scheme="http://blueint32.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Syntaxe alternative pour les tests d&#39;exception en C#</title>
+    <link href="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/"/>
+    <id>http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/</id>
+    <published>2021-05-12T06:36:56.000Z</published>
+    <updated>2021-05-12T07:21:07.382Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA qu’il existait une alternative pour tester les exceptions en C#. Depuis toujours j’utilisais la syntaxe suivante :&lt;/p&gt;
+&lt;figure</summary>
+        
+      
+    
+    
+    
+    
+    <category term="C#" scheme="http://blueint32.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Les web components et les frameworks JS</title>
     <link href="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/"/>
     <id>http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/</id>
     <published>2021-05-08T05:29:50.000Z</published>
-    <updated>2021-05-08T06:07:45.781Z</updated>
+    <updated>2021-05-12T07:21:07.382Z</updated>
     
     
       
@@ -48,7 +95,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/"/>
     <id>http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/</id>
     <published>2021-05-05T17:31:54.000Z</published>
-    <updated>2021-05-08T06:07:45.781Z</updated>
+    <updated>2021-05-12T07:21:07.382Z</updated>
     
     
       
@@ -74,7 +121,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/"/>
     <id>http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/</id>
     <published>2021-05-05T17:18:13.000Z</published>
-    <updated>2021-05-08T06:07:45.781Z</updated>
+    <updated>2021-05-12T07:21:07.382Z</updated>
     
     
       
@@ -97,7 +144,7 @@
     <link href="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/"/>
     <id>http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/</id>
     <published>2021-05-04T03:32:01.000Z</published>
-    <updated>2021-05-08T06:07:45.781Z</updated>
+    <updated>2021-05-12T07:21:07.382Z</updated>
     
     
       
@@ -120,7 +167,7 @@
     <link href="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/"/>
     <id>http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/</id>
     <published>2021-05-03T05:04:45.000Z</published>
-    <updated>2021-05-08T06:07:45.781Z</updated>
+    <updated>2021-05-12T07:21:07.382Z</updated>
     
     
       
