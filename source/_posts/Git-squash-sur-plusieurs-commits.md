@@ -1,5 +1,5 @@
 ---
-title: Git squash sur plusieurs commits avec cherry-pick
+title: git cherry-pick -n - Rapatrier et faire un squash de plusieurs commits
 date: 2021-05-05 19:18:13
 tags: git
 ---

@@ -1,5 +1,5 @@
 ---
-title: Le flag -N ou "--intent-to-add" de git add
+title: git add -N - Le flag "--intent-to-add"
 date: 2021-05-12 08:56:51
 tags: git
 ---

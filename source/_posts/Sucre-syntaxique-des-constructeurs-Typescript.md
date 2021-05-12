@@ -1,5 +1,5 @@
 ---
-title: Sucre syntaxique des constructeurs Typescript
+title: Typescript - Sucre syntaxique des constructeurs
 date: 2021-05-04 05:32:01
 tags: typescript
 ---
