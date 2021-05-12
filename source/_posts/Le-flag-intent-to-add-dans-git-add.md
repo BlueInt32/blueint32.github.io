@@ -31,3 +31,5 @@ $ git add -N .
 ```
 
 Les nouveaux fichiers ont alors bien une entrée dans l'index, sans contenu effectif : le diff-tool les verra sans qu'ils soient encore concrètement dans l'index. C'est du temps de gagné ! ![](joy.png)
+
+Pour plus d'info sur les options de `git add`dans la doc officielle [ici](https://git-scm.com/docs/git-add).
