@@ -1,5 +1,5 @@
 ---
-title: git add -N - Le flag "--intent-to-add"
+title: git add -N pour les fichiers pas encore dans l'index
 date: 2021-05-12 08:56:51
 tags: git
 ---
