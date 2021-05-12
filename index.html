@@ -90,7 +90,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N pour les fichiers pas encore dans l&#39;index</a>
+      <a class="p-name article-title" href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N : marquer des fichiers pour ajout</a>
     </h1>
   
 
@@ -103,10 +103,10 @@
 <p>Jusqu’ici, je détournais ce comportement en ajoutant tous les fichiers avec</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
 
-<p>Ainsi, les nouveaux fichiers apparaissaient et je pouvais vérifier mon différentiel avec</p>
+<p>Ainsi, les nouveaux fichiers apparaissaient dans le diff-tool en utilisant le flag <code>--staged</code> :</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff-tool --staged</span><br></pre></td></tr></table></figure>
 
-<p>L’ennui avec cette approche, c’est que l’opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l’analyse du différentiel n’est plus possible car tous les fichiers sont déjà dans l’index…</p>
+<p>Et je pouvais noter les fichiers que je voulais réellement inclure dans mon commit, avant de faire <code>git reset</code>… Bref, pas idéal. L’ennui avec cette approche, c’est que l’opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l’analyse du différentiel n’est plus possible car tous les fichiers sont déjà dans l’index…</p>
 <p>Mais ça, c’était avant. Il est possible de spécifier à git que des fichiers vont être ajoutés, sans les ajouter concrètement tout de suite à l’index :</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add --intent-to-add .</span><br><span class="line"> ou</span><br><span class="line">$ git add -N .</span><br></pre></td></tr></table></figure>
 
@@ -115,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckol5xct20004fun8cspa3647" data-title="git add -N pour les fichiers pas encore dans l&#39;index" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckolglpc70004g4nb8czmhnvg" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -167,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckol5xct80008fun86k232g4e" data-title="C# - Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckolglpcd0008g4nb6kkc2cxs" data-title="C# - Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -213,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckol5xcti000kfun84mwi6g0b" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckolglpco000kg4nb46s2eno8" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -272,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckol5xct50006fun8f9976rqc" data-title="git bash - Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckolglpcb0006g4nbgmwr1o64" data-title="git bash - Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -324,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckol5xct00003fun89eo5154o" data-title="git cherry-pick -n - Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckolglpc50003g4nb1yvff76x" data-title="git cherry-pick -n - Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -372,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckol5xct70007fun89zwh70c3" data-title="Typescript - Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckolglpcc0007g4nb4wreddnw" data-title="Typescript - Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -417,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckol5xcsw0001fun8d7y77l8k" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckolglpbz0001g4nb99fkdwoj" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -465,7 +465,7 @@
       <ul>
         
           <li>
-            <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N pour les fichiers pas encore dans l&#39;index</a>
+            <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N : marquer des fichiers pour ajout</a>
           </li>
         
           <li>
