@@ -1,5 +1,5 @@
 ---
-title: git bash - Injection du nom de la branche git active
+title: "git bash : Injection du nom de la branche git active"
 date: 2021-05-05 19:31:54
 tags:
   - git

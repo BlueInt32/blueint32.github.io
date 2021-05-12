@@ -1,5 +1,5 @@
 ---
-title: C# - Syntaxe alternative pour les tests d'exception
+title: "C# : Syntaxe alternative pour les tests d'exception"
 date: 2021-05-12 08:36:56
 tags: C#
 ---
