@@ -1,5 +1,5 @@
 ---
-title: git add -N pour les fichiers pas encore dans l'index
+title: "git add -N : marquer des fichiers pour ajout"
 date: 2021-05-12 08:56:51
 tags: git
 ---
@@ -14,13 +14,13 @@ Jusqu'ici, je détournais ce comportement en ajoutant tous les fichiers avec
 $ git add .
 ```
 
-Ainsi, les nouveaux fichiers apparaissaient et je pouvais vérifier mon différentiel avec
+Ainsi, les nouveaux fichiers apparaissaient dans le diff-tool en utilisant le flag `--staged` :
 
 ```bash
 $ git diff-tool --staged
 ```
 
-L'ennui avec cette approche, c'est que l'opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l'analyse du différentiel n'est plus possible car tous les fichiers sont déjà dans l'index...
+Et je pouvais noter les fichiers que je voulais réellement inclure dans mon commit, avant de faire `git reset`... Bref, pas idéal. L'ennui avec cette approche, c'est que l'opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l'analyse du différentiel n'est plus possible car tous les fichiers sont déjà dans l'index...
 
 Mais ça, c'était avant. Il est possible de spécifier à git que des fichiers vont être ajoutés, sans les ajouter concrètement tout de suite à l'index :
 
