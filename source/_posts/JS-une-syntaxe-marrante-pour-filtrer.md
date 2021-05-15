@@ -30,8 +30,6 @@ Comment ça ? 🤔 J'ai tout d'abord cru qu'il s'agissait d'une syntaxe bizarre 
 
 Mais en fait, en JS, `Boolean` n'est pas seulement un type, c'est également un constructeur, ou encore une fonction. Et il se trouve que l'on peut construire un booléen en lui fournissant n'importe quoi en entrée, ce qui donnera à ce booléen la truthiness de la valeur fournie.
 
-![](example-1.png)
-
 En somme, les trois syntaxes suivantes sont équivalentes :
 
 ```js
