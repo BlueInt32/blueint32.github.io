@@ -76,6 +76,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS-comprendre-les-ellipses-de-texte" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" class="article-date">
+  <time class="dt-published" datetime="2021-05-15T07:04:22.000Z" itemprop="datePublished">2021-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/">CSS : comprendre les ellipses de texte</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA comment fonctionnaient vraiment les ellipses de texte en CSS. A priori, on pourrait croire qu’il est assez simple d’activer cela. En réalité, pas tant que ça.</p>
+<p>En effet, il s’agit de spécifier au navigateur la chose suivante : “si ce texte est trop long, il ne doit pas dépasser de son conteneur et afficher trois petits points juste avant de dépasser”.</p>
+<p>Avant-hier, j’aurais cru naïvement pouvoir faire cela avec une ligne de CSS.</p>
+<p>Il n’en est rien !</p>
+<p>Tout d’abord, voyons comment le texte se comporte lorsqu’aucune règle particulière n’est appliquée :</p>
+<p><img src="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/example-1.png"></p>
+<p>On constate que, par défaut, le moteur CSS applique un “wrapping”, qui donne au texte la propriété d’aller automatiquement à la ligne lorsqu’il rencontre les bords du conteneur.</p>
+<p>Or, notre objectif est que le texte n’aille pas à la ligne mais qu’il soit caché. Il faut donc tout d’abord désactiver ce “wrapping” :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/example-2.png"></p>
+<p>Ensuite, il semble clair que tout ce qui dépasse doit être rabotté ! Cela n’est manifestement pas le cas par défaut, il y a donc une nouvelle règle CSS à ajouter à notre code :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/example-3.png"></p>
+<p>Apparement, le moteur CSS ne veut pas appliquer l’ellipse par défaut. En effet, son comportement par défaut est “clip”, ce qui signifie que le texte sera coupé sans autre forme de procès. C’est peu élégant. Appliquons notre ellipse ici :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">white-space</span>: nowrap;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line"><span class="attribute">text-overflow</span>: ellipsis;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/example-4.png"></p>
+<p>Et voilà ! 😅</p>
+<p>Ce qu’il faut retenir de tout ça, c’est que cette dernière règle seule ne se “met en route” que dans le contexte où le texte va sortir de son conteneur (<code>white-space: nowrap;</code>) et où ce dépassement est caché (<code>overflow: hidden</code>).</p>
+<p>Le code des exemples se trouve dans ce <a target="_blank" rel="noopener" href="https://codepen.io/BlueInt32/pen/GRWZVaR">codepen</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckopghoe00003lgnd65dm1we2" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Vim-plus-de-flexibilite-avec-vim-surround" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" class="article-date">
@@ -144,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckopelttu000kgenbacjt5ihb" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckopghoek000plgnde109gg4t" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -198,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckopelttd0004genb2ptu7wu6" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckopghoe50006lgndgnak8a68" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -250,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckopelttj0008genb9o4bbkhw" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckopghoeh000mlgnd1asn0kvj" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -296,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckopelttv000lgenbfktta3we" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckopghoei000nlgndax97hu2f" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -355,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckopeltth0006genb8zsje0aa" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckopghoe70007lgndd33hco03" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -407,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckopelttb0003genbezt8c9f1" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckopghoe20004lgndcjjdfn95" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -455,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckopeltti0007genbdkjfdnw5" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckopghoe80008lgndbqqk22i2" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -500,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckopeltt70001genbbju82402" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckopghodx0001lgnd7trw3zl3" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -525,7 +587,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -548,6 +610,10 @@
       <ul>
         
           <li>
+            <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/">CSS : comprendre les ellipses de texte</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/">Vim : plus de flexibilité avec vim-surround</a>
           </li>
         
@@ -561,10 +627,6 @@
         
           <li>
             <a href="/2021/05/08/VueJs-et-les-Web-components/">Les web components et les frameworks JS</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/">git bash : Injection du nom de la branche git active</a>
           </li>
         
       </ul>
