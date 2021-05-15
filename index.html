@@ -76,6 +76,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vim-plus-de-flexibilite-avec-vim-surround" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" class="article-date">
+  <time class="dt-published" datetime="2021-05-15T06:19:31.000Z" itemprop="datePublished">2021-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/">Vim : plus de flexibilité avec vim-surround</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que le plugin Vim de VsCode proposait d’activer <a target="_blank" rel="noopener" href="https://github.com/VSCodeVim/Vim#vim-surround">vim-surround</a>, qui est à l’origine un <a target="_blank" rel="noopener" href="https://github.com/tpope/vim-surround">plugin de Vim</a> particulièrement pratique. Il fait économiser beaucoup de manipulations.</p>
+<p>Voici un exemple de texte :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texte à manipuler avec vim.</span><br></pre></td></tr></table></figure>
+
+<p>Sans vim-surround, si on veut mettre les mot <code>manipuler avec vim</code> entre guillemets, en supposant que le curseur se trouve au début de la ligne, la manipulation est la suivante :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwi&quot;&lt;esc&gt;3ea&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Avec vim-surround, cela devient plus idiomatique :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwys3w&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Le principe est de n’écrire qu’une fois le caractère englobant, et de dire à vim-surround comment atteindre la fin de l’expression à entourer avec un déplacement (ici <code>3w</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ys3w&quot;</span><br></pre></td></tr></table></figure>
+
+<p>pourrait être traduit en :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You Surround 3 Words with &quot;</span><br></pre></td></tr></table></figure>
+
+<p>C’est déjà une belle économie. Mais je n’aime personnellement pas beaucoup compter les mots pour les mouvements car ce n’est pas très fiable dans du code source. J’utilise plutôt des sélections en mode visuel (potentiellement en utilisant la souris).</p>
+<p>Heureusement, vim-surround permet d’être actionné à partir d’une sélection avec <code>S</code> (s majuscule) !</p>
+<p>vim-surround fait selon moi vraiment la différence pour remplacer des caractères déjà existant.</p>
+<p>Reprenons notre texte modifié :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texte à &quot;manipuler avec vim&quot;.</span><br></pre></td></tr></table></figure>
+
+<p>Si je veux remplacer les guillemets par des parenthèses, la manipulation sans vim-surround est encore une fois fastidieuse :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwr(eeelr)</span><br></pre></td></tr></table></figure>
+
+<p>Avec vim-surround :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwcs&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>où <code>cs&quot;)</code> pourrait être traduit en</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Change Surround &quot; to )</span><br></pre></td></tr></table></figure>
+
+<p>On obtient alors directement</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texte à (manipuler avec vim).</span><br></pre></td></tr></table></figure>
+
+<p>Plutôt pratique !</p>
+<p>Le petit bonus sympa, c’est qu’en utilisant les caractères ouvrant <code>(</code> ou <code>[</code> dans l’expression de remplacement, vim-surround va automatiquement insérer des espaces à l’intérieur. Ainsi la commande suivante :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wwcs&quot;(</span><br></pre></td></tr></table></figure>
+
+<p>produira le texte suivant :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texte à ( manipuler avec vim ).</span><br></pre></td></tr></table></figure>
+
+<p>Vim, c’est la vie.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckopelttu000kgenbacjt5ihb" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Le-flag-intent-to-add-dans-git-add" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/" class="article-date">
@@ -116,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckolguhj40004j2na85fz92jg" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckopelttd0004genb2ptu7wu6" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -168,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckolguhjg000cj2na5utt6hx9" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckopelttj0008genb9o4bbkhw" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -214,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckolguhjh000dj2nacilscyf5" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckopelttv000lgenbfktta3we" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -273,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckolguhjd0009j2na8v6q564w" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckopeltth0006genb8zsje0aa" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -325,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckolguhj10003j2na3qsyfv4m" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckopelttb0003genbezt8c9f1" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -373,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckolguhje000aj2na5qnk5au0" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckopeltti0007genbdkjfdnw5" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -418,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckolguhix0001j2na7osnh401" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckopeltt70001genbbju82402" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -443,7 +525,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -466,6 +548,10 @@
       <ul>
         
           <li>
+            <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/">Vim : plus de flexibilité avec vim-surround</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N : marquer des fichiers pour ajout</a>
           </li>
         
@@ -479,10 +565,6 @@
         
           <li>
             <a href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/">git bash : Injection du nom de la branche git active</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/">git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits</a>
           </li>
         
       </ul>
