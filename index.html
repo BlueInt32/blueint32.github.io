@@ -76,6 +76,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-une-syntaxe-marrante-pour-filtrer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" class="article-date">
+  <time class="dt-published" datetime="2021-05-15T15:01:58.000Z" itemprop="datePublished">2021-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/">JS : une syntaxe marrante pour filtrer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA une syntaxe intéressante pour filtrer facilement un tableau en fonction de la “truthiness” de ses valeurs.</p>
+<p>Imaginons le tableau suivant :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myArray = [<span class="string">&quot;mon&quot;</span>, <span class="literal">NaN</span>, <span class="string">&quot;beau&quot;</span>, <span class="literal">null</span>, <span class="string">&quot;tableau&quot;</span>, <span class="string">&quot;&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>Pour filtrer ce tableau, j’aurais utilisé le code suivant :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cleanArray = myArray.filter(<span class="function">(<span class="params">i</span>) =&gt;</span> i);</span><br></pre></td></tr></table></figure>
+
+<p>Car <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter</a> évalue la truthiness de la lambda pour chaque élément, cela fonctionne.</p>
+<p>Or <a target="_blank" rel="noopener" href="https://stackoverflow.com/a/19903063/1199535">sur stackoverflow</a>, j’ai lu la réponse suivante :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cleanArray = myArray.filter(<span class="built_in">Boolean</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Comment ça ? 🤔 J’ai tout d’abord cru qu’il s’agissait d’une syntaxe bizarre que je ne connaissais pas.</p>
+<p>Mais en fait, en JS, <code>Boolean</code> n’est pas seulement un type, c’est également un constructeur, ou encore une fonction. Et il se trouve que l’on peut construire un booléen en lui fournissant n’importe quoi en entrée, ce qui donnera à ce booléen la truthiness de la valeur fournie.</p>
+<p><img src="/example-1.png"></p>
+<p>En somme, les trois syntaxes suivantes sont équivalentes :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cleanArray1 = myArray.filter(<span class="function">(<span class="params">i</span>) =&gt;</span> i);</span><br><span class="line"><span class="keyword">const</span> cleanArray2 = myArray.filter(<span class="function">(<span class="params">i</span>) =&gt;</span> <span class="built_in">Boolean</span>(i));</span><br><span class="line"><span class="keyword">const</span> cleanArray3 = myArray.filter(<span class="built_in">Boolean</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Après… Entre nous, à part pour briller en société, la syntaxe ne me parait pas beaucoup plus lisible, mais c’était marrant de découvrir cette manière de procéder.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckopw95u60006g1nbexz659y8" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-CSS-comprendre-les-ellipses-de-texte" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" class="article-date">
@@ -123,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckopvk5600003iinh463pd08r" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckopw95u10003g1nb055733zt" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -205,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckopvk56j000piinh4t6ze9gn" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckopw95uh000mg1nbgx4xgnan" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -259,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckopvk5650006iinhcq9n6uou" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckopw95u70007g1nb0r0a1cqs" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -311,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckopvk56h000miinhhunx1o4d" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckopw95um000ug1nb5s1de172" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -357,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckopvk56i000niinh5vkdb15o" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckopw95up000vg1nb8ca48cpk" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -416,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckopvk5670007iinh4vyncb8m" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckopw95u80008g1nb5fr00vsg" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -468,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckopvk5620004iinh8ugfccub" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckopw95u20004g1nb2xjxaicp" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -516,7 +574,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckopvk5680008iinh8ge9bi64" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckopw95ui000ng1nbbhk3ckfj" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -561,7 +619,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckopvk55x0001iinh7g8s82oo" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckopw95tx0001g1nb1syvcen1" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -586,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -609,6 +667,10 @@
       <ul>
         
           <li>
+            <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/">JS : une syntaxe marrante pour filtrer</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/">CSS : comprendre les ellipses de texte</a>
           </li>
         
@@ -622,10 +684,6 @@
         
           <li>
             <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/">C# : Syntaxe alternative pour les tests d&#39;exception</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/08/VueJs-et-les-Web-components/">Les web components et les frameworks JS</a>
           </li>
         
       </ul>
