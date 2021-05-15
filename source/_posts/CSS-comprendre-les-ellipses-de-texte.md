@@ -10,8 +10,6 @@ AJA comment fonctionnaient vraiment les ellipses de texte en CSS. A priori, on p
 
 En effet, il s'agit de spécifier au navigateur la chose suivante : "si ce texte est trop long, il ne doit pas dépasser de son conteneur et afficher trois petits points juste avant de dépasser".
 
-Il n'en est rien !
-
 Tout d'abord, voyons comment le texte se comporte lorsqu'aucune règle particulière n'est appliquée :
 
 ![](example-1.png)
