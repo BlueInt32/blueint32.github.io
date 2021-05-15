@@ -6,11 +6,9 @@ tags:
   - css
 ---
 
-AJA comment fonctionnaient vraiment les ellipses de texte en CSS. A priori, on pourrait croire qu'il est assez simple d'activer cela. En réalité, pas tant que ça.
+AJA comment fonctionnaient vraiment les ellipses de texte en CSS. A priori, on pourrait croire qu'il suffirait d'une ligne de CSS pour les mettre en place. En réalité, c'est un tout petit peu plus compliqué que ça.
 
 En effet, il s'agit de spécifier au navigateur la chose suivante : "si ce texte est trop long, il ne doit pas dépasser de son conteneur et afficher trois petits points juste avant de dépasser".
-
-Avant-hier, j'aurais cru naïvement pouvoir faire cela avec une ligne de CSS.
 
 Il n'en est rien !
 
