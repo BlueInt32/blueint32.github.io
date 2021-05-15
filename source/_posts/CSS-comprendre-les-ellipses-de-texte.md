@@ -52,3 +52,5 @@ Et voilà ! 😅
 Ce qu'il faut retenir de tout ça, c'est que cette dernière règle seule ne se "met en route" que dans le contexte où le texte va sortir de son conteneur (`white-space: nowrap;`) et où ce dépassement est caché (`overflow: hidden`).
 
 Le code des exemples se trouve dans ce [codepen](https://codepen.io/BlueInt32/pen/GRWZVaR).
+
+Sinon, vous trouverez plus de détail sur `text-overflow` dans l'excellente documentation [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow).
