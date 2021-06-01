@@ -4,22 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>git add -N : marquer des fichiers pour ajout | Daily knowledge extract</title>
+  <title>HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser | Daily knowledge extract</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="AJA que l’on pouvait spécifier à git qu’on prévoyait d’ajouter des fichiers sans forcément les ajouter tout de suite à l’index ! Mais pourquoi voudrait-on faire ça ? Eh bien il peut être embêtant dans">
+  <meta name="description" content="AJA que les hyperliens HTML pouvaient spécifier un attribut download permettant de forcer le téléchargement d’un fichier depuis un lien donné. Certes, les navigateurs ont tendance à outrepasser ce com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git add -N : marquer des fichiers pour ajout">
-<meta property="og:url" content="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/index.html">
+<meta property="og:title" content="HTML&#x2F;JS : astuce pour générer un fichier téléchargeable depuis le browser">
+<meta property="og:url" content="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/index.html">
 <meta property="og:site_name" content="Daily knowledge extract">
-<meta property="og:description" content="AJA que l’on pouvait spécifier à git qu’on prévoyait d’ajouter des fichiers sans forcément les ajouter tout de suite à l’index ! Mais pourquoi voudrait-on faire ça ? Eh bien il peut être embêtant dans">
+<meta property="og:description" content="AJA que les hyperliens HTML pouvaient spécifier un attribut download permettant de forcer le téléchargement d’un fichier depuis un lien donné. Certes, les navigateurs ont tendance à outrepasser ce com">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:image" content="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/joy.png">
-<meta property="article:published_time" content="2021-05-12T06:56:51.000Z">
+<meta property="article:published_time" content="2021-06-01T06:58:08.000Z">
 <meta property="article:modified_time" content="2021-06-01T09:05:41.745Z">
 <meta property="article:author" content="BlueInt32">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/joy.png">
   
     <link rel="alternate" href="/atom.xml" title="Daily knowledge extract" type="application/atom+xml">
   
@@ -80,10 +79,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Le-flag-intent-to-add-dans-git-add" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/" class="article-date">
-  <time class="dt-published" datetime="2021-05-12T06:56:51.000Z" itemprop="datePublished">2021-05-12</time>
+    <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" class="article-date">
+  <time class="dt-published" datetime="2021-06-01T06:58:08.000Z" itemprop="datePublished">2021-06-01</time>
 </a>
     
   </div>
@@ -94,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      git add -N : marquer des fichiers pour ajout
+      HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser
     </h1>
   
 
@@ -102,29 +101,22 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>AJA que l’on pouvait spécifier à git qu’on <em>prévoyait d’ajouter</em> des fichiers sans forcément les ajouter tout de suite à l’index !</p>
-<p>Mais pourquoi voudrait-on faire ça ? Eh bien il peut être embêtant dans git de faire des différentiels lorsque certains fichiers viennent d’être rajoutés, car ceux-ci seront tout simplement ignorés par git tant qu’il n’aura pas été mis au courant que ces fichiers ont un rôle dans la base de code (pour autant que git sache, on pourrait très bien vouloir ajouter ces fichiers dans le <code>.gitignore</code>).</p>
-<p>Jusqu’ici, je détournais ce comportement en ajoutant tous les fichiers avec</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
-
-<p>Ainsi, les nouveaux fichiers apparaissaient dans le diff-tool en utilisant le flag <code>--staged</code> :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff-tool --staged</span><br></pre></td></tr></table></figure>
-
-<p>Et je pouvais noter les fichiers que je voulais réellement inclure dans mon commit, avant de faire <code>git reset</code>… Bref, pas idéal. L’ennui avec cette approche, c’est que l’opération naturelle qui consiste à ajouter certains fichiers au fur à mesure de l’analyse du différentiel n’est plus possible car tous les fichiers sont déjà dans l’index…</p>
-<p>Mais ça, c’était avant. Il est possible de spécifier à git que des fichiers vont être ajoutés, sans les ajouter concrètement tout de suite à l’index :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add --intent-to-add .</span><br><span class="line"> ou</span><br><span class="line">$ git add -N .</span><br></pre></td></tr></table></figure>
-
-<p>Les nouveaux fichiers ont alors bien une entrée dans l’index, sans contenu effectif : le diff-tool les verra sans qu’ils soient encore concrètement dans l’index. C’est du temps de gagné ! <img src="/2021/05/12/Le-flag-intent-to-add-dans-git-add/joy.png"></p>
-<p>Pour plus d’info sur les options de <code>git add</code>dans la doc officielle <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-add">ici</a>.</p>
+        <p>AJA que les hyperliens HTML pouvaient spécifier un attribut <code>download</code> permettant de forcer le téléchargement d’un fichier depuis un lien donné.</p>
+<p>Certes, les navigateurs ont tendance à outrepasser ce comportement pour beaucoup de types de fichiers par défaut (ils vont par exemple afficher directement une image même si le lien a cet attribut).</p>
+<p>Cependant, il est possible d’utiliser cette technique pour générer un téléchargement en créant un hyperlien à la volée (“sur la mouche”, comme on dit dans le milieu).</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;clickHandler()&quot;</span>&gt;</span>Clique moi<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> data =</span></span><br><span class="line"><span class="javascript">        <span class="string">&quot;More than cleverness, we need kindness and gentleness. Charlie Chaplin&quot;</span>;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> fileURL = <span class="built_in">window</span>.URL.createObjectURL(<span class="keyword">new</span> Blob([data]));</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> fileLink = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span></span><br><span class="line"></span><br><span class="line">      fileLink.href = fileURL;</span><br><span class="line"><span class="javascript">      fileLink.setAttribute(<span class="string">&quot;download&quot;</span>, <span class="string">&quot;charlie.txt&quot;</span>);</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.body.appendChild(fileLink);</span></span><br><span class="line">      fileLink.click();</span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.body.removeChild(fileLink);</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Si par exemple des données JSON sont retournées par une API, il est ainsi parfaitement possible de créer un fichier pour le rendre téléchargeable à partir de la chaîne de caractères.</p>
+<p>Par ailleurs, on voit que la fonction utilise un <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a> dont les mystères restent encore à découvrir 🙂.</p>
+<p>En tout cas, c’est malin !</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckpdtfubo0007isn57gq0bods" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckpdtfuc1000pisn5c5ts9d0x" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -132,19 +124,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          Vim : plus de flexibilité avec vim-surround
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">C# : Syntaxe alternative pour les tests d&#39;exception</div>
+      <div class="article-nav-title">JS : une syntaxe marrante pour filtrer</div>
     </a>
   
 </nav>
