@@ -76,6 +76,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Csharp-la-base-de-l-asynchrone" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/06/14/Csharp-la-base-de-l-asynchrone/" class="article-date">
+  <time class="dt-published" datetime="2021-06-14T05:01:14.000Z" itemprop="datePublished">2021-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/06/14/Csharp-la-base-de-l-asynchrone/">C# : la base de l&#39;asynchrone</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA un peu plus précisément comment fonctionnait le système de gestion des tâches asynchrones en C#. J’ai découvert <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/">une page de documentation microsoft</a> vraiment bien écrite pour découvrir (ou redécouvrir) le sujet en détail. </p>
+<p>L’article est fondé sur l’analogie de la préparation d’un petit déjeuner : certaines des tâches ne nécessitent pas la présence constante d’un cuistot, par exemple pendant que les tartines cuisent dans le grille-pain. On comprend intuitivement que personne de sain d’esprit ne resterait planté devant le grille-pain alors qu’il est possible de cuire les oeufs et de verser le jus d’orange en attendant. On parle de tâche asynchrone.</p>
+<p>En .net, ce concept de tâche asynchrone est implémenté à l’aide de l’objet <code>Task</code>. Il représente non pas l’action de faire quelque chose (comme le ferait une fonction quelconque) mais plutôt le fait qu’une action est en cours, il s’agit donc d’une représentation de son status. Cela correspond pratiquement à la notion de promesse en JS.</p>
+<p>Concrètement, il peut s’agir d’un appel à un service externe. Voici un exemple particulièrement utile : </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;ImportantData&gt; <span class="title">GetDataAsync</span>(<span class="params"><span class="built_in">int</span> taskNumber</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">await</span> Task.Run(() =&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\tLong task start &quot;</span> + taskNumber);</span><br><span class="line">		Thread.Sleep(<span class="number">1000</span>);</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\tTick &quot;</span> + taskNumber);</span><br><span class="line">		Thread.Sleep(<span class="number">1000</span>);</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\tTick &quot;</span> + taskNumber);</span><br><span class="line">		Thread.Sleep(<span class="number">1000</span>);</span><br><span class="line">		Console.WriteLine(<span class="string">&quot;\tLong task finish &quot;</span> + taskNumber);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ImportantData();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Un utilisateur de cette méthode asynchrone pourra adopter plusieurs stratégies, plus ou moins efficaces. </p>
+<p>Tout d’abord il est possible d’appeler cette méthode sans syntaxe particulière comme ceci : </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program start&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> gettingImportantData1 = SlowService.GetDataAsync(<span class="number">1</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Synchronous task&quot;</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program end&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Ici, l’éxecution ne va pas se bloquer pour attendre <code>GetDataAsync</code>. Cela veut dire que le programme va se terminer avant même que la tâche ait effectué son premier “tick” : </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Program start</span><br><span class="line">        Long task start 1</span><br><span class="line">Synchronous task</span><br><span class="line">Program end</span><br></pre></td></tr></table></figure>
+
+<p>Autre possibilité : attendre.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program start&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> gettingImportantData1 = <span class="keyword">await</span> SlowService.GetDataAsync(<span class="number">1</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Synchronous task&quot;</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program end&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Dans ce cas, le programme va suspendre son execution et attendre la fin de la tâche longue avant de reprendre : on note cependant que la tâche synchrône est toujours effectuée après la tâche longue.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Program start</span><br><span class="line">        Long task start 1</span><br><span class="line">        Tick 1</span><br><span class="line">        Tick 1</span><br><span class="line">        Long task finish 1</span><br><span class="line">Synchronous task</span><br><span class="line">Program end</span><br></pre></td></tr></table></figure>
+
+<p>⚠️ Ici, il est important de noter que pendant l’exécution de la tâche longue (avec <code>await</code>), la CLR relâche le thread. Dans un contexte web ou client WPF par exemple, cela signifie que d’autres actions utilisateurs pourront être prises en charge par ce thread en attendant. Ce n’est pas du tout négligeable pour la scalabilité.</p>
+<p>Toujours est-il que notre programme en tant que tel n’est pas très optimisé : en effet, je préfèrerais largement gagner du temps sur l’éxecution de ma tâche synchrone et l’effectuer en parallèle de la tâche longue. Et qui sait, peut-être voudrais-je appeler deux fois ma tâche longue avec d’autres paramètres !</p>
+<p>C’est très simple, il suffit d’ordonnancer les appels de façon intuitive par rapport aux tâches : </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program start&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> gettingImportantData1 = SlowService.GetDataAsync(<span class="number">1</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Synchronous task&quot;</span>);</span><br><span class="line">	<span class="keyword">await</span> gettingImportantData1;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program end&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>On voit ici qu’il y a une différence entre démarrer une tâche asynchrône, et forcer l’attente de la fin de son exécution. L’objet <code>Task</code> permet de garder la main sur cela et d’avoir enfin un programme performant :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Program start</span><br><span class="line">        Long task start 1</span><br><span class="line">Synchronous task</span><br><span class="line">        Tick 1</span><br><span class="line">        Tick 1</span><br><span class="line">        Long task finish 1</span><br><span class="line">Program end</span><br></pre></td></tr></table></figure>
+
+<p>Et comme je l’avais envisagé, je peux appeler ma tâche longue plusieurs fois en parallèle : </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program start&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> gettingImportantData1 = SlowService.GetDataAsync(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">var</span> gettingImportantData2 = SlowService.GetDataAsync(<span class="number">2</span>);</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Synchronous task&quot;</span>);</span><br><span class="line">	<span class="keyword">await</span> gettingImportantData1;</span><br><span class="line">	<span class="keyword">await</span> gettingImportantData2;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Program end&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Et ainsi obtenir le parallelisme attendu :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Program start</span><br><span class="line">Synchronous task</span><br><span class="line">        Long task start 1</span><br><span class="line">        Long task start 2</span><br><span class="line">        Tick 1</span><br><span class="line">        Tick 2</span><br><span class="line">        Tick 1</span><br><span class="line">        Tick 2</span><br><span class="line">        Long task finish 1</span><br><span class="line">        Long task finish 2</span><br><span class="line">Program end</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckpxlpaxi00048fnf3haq7b9j" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" class="article-date">
@@ -109,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckpdtfuc1000pisn5c5ts9d0x" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckpxlpaxr000d8fnf9b41bxfn" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -166,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckpdtfubn0006isn5c1zdhgug" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckpxlpaxm00078fnf6vhi0z1d" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -227,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckpdtfubi0003isn52fq81b94" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckpxlpaxg00038fnf28wnddwl" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -309,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckpdtfuc8000zisn5edt6a6xc" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckpxlpay200128fnfbffldmro" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -363,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckpdtfubo0007isn57gq0bods" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckpxlpaxn00088fnf25u341k7" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -415,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckpdtfuc80010isn538r1d6am" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckpxlpay1000z8fnfej4l742u" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -461,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckpdtfubz000nisn54mlh5ym1" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckpxlpaxp000b8fnf7yei8lx0" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -520,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckpdtfubp0008isn56vpt428g" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckpxlpaxp000a8fnfddum5b9k" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -572,59 +642,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckpdtfubk0004isn5d8571d9v" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckpxlpaxl00068fnf3rpk17zl" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Sucre-syntaxique-des-constructeurs-Typescript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" class="article-date">
-  <time class="dt-published" datetime="2021-05-04T03:32:01.000Z" itemprop="datePublished">2021-05-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/">Typescript : Sucre syntaxique des constructeurs</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>AJA que l’on pouvait écrire des constructeurs typescript qui automatisaient la creation de variables locales, cela s’appelle “Parameter properties”.</p>
-<p>Plutôt que d’écrire :</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> brand: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">brand: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.brand = brand;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>on peut écrire</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> brand: <span class="built_in">string</span></span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Plus d’informations sur les parameter properties <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties">ici</a>.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckpdtfubz000misn51wlzcmw1" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
 
     </footer>
   </div>
@@ -675,6 +697,10 @@
       <ul>
         
           <li>
+            <a href="/2021/06/14/Csharp-la-base-de-l-asynchrone/">C# : la base de l&#39;asynchrone</a>
+          </li>
+        
+          <li>
             <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/">HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</a>
           </li>
         
@@ -688,10 +714,6 @@
         
           <li>
             <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/">Vim : plus de flexibilité avec vim-surround</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/12/Le-flag-intent-to-add-dans-git-add/">git add -N : marquer des fichiers pour ajout</a>
           </li>
         
       </ul>

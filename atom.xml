@@ -6,7 +6,7 @@
   <link href="http://blueint32.github.io/atom.xml" rel="self"/>
   
   <link href="http://blueint32.github.io/"/>
-  <updated>2021-06-01T09:05:41.745Z</updated>
+  <updated>2021-06-15T05:24:30.494Z</updated>
   <id>http://blueint32.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C# : la base de l&#39;asynchrone</title>
+    <link href="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/"/>
+    <id>http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/</id>
+    <published>2021-06-14T05:01:14.000Z</published>
+    <updated>2021-06-15T05:24:30.494Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;AJA un peu plus précisément comment fonctionnait le système de gestion des tâches asynchrones en C#. J’ai découvert &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="C#" scheme="http://blueint32.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</title>
     <link href="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/"/>
     <id>http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/</id>
     <published>2021-06-01T06:58:08.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -46,7 +69,7 @@
     <link href="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/"/>
     <id>http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/</id>
     <published>2021-05-15T15:01:58.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -70,7 +93,7 @@
     <link href="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/"/>
     <id>http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/</id>
     <published>2021-05-15T07:04:22.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -95,7 +118,7 @@
     <link href="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/"/>
     <id>http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/</id>
     <published>2021-05-15T06:19:31.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -120,7 +143,7 @@
     <link href="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/"/>
     <id>http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/</id>
     <published>2021-05-12T06:56:51.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -143,7 +166,7 @@
     <link href="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/"/>
     <id>http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/</id>
     <published>2021-05-12T06:36:56.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -167,7 +190,7 @@
     <link href="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/"/>
     <id>http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/</id>
     <published>2021-05-08T05:29:50.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -194,7 +217,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/"/>
     <id>http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/</id>
     <published>2021-05-05T17:31:54.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -220,7 +243,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/"/>
     <id>http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/</id>
     <published>2021-05-05T17:18:13.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -243,7 +266,7 @@
     <link href="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/"/>
     <id>http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/</id>
     <published>2021-05-04T03:32:01.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
@@ -266,7 +289,7 @@
     <link href="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/"/>
     <id>http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/</id>
     <published>2021-05-03T05:04:45.000Z</published>
-    <updated>2021-06-01T09:05:41.745Z</updated>
+    <updated>2021-06-15T05:24:30.494Z</updated>
     
     
       
