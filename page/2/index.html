@@ -76,6 +76,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Git-squash-sur-plusieurs-commits" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/05/Git-squash-sur-plusieurs-commits/" class="article-date">
+  <time class="dt-published" datetime="2021-05-05T17:18:13.000Z" itemprop="datePublished">2021-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/05/Git-squash-sur-plusieurs-commits/">git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que l’on pouvait appliquer les changements d’une série de commits sans les enregistrer, pour faire un genre de squash à la volée.</p>
+<p>Le scénario typique pour faire cette manip est le suivant. Vous avez une série de commits sur votre branche <code>main</code>, et vous voulez appliquer l’ensemble des patchs sur une branche de prod pour un hotfix avec un unique commit qui réunit tous les changements.</p>
+<p>Sur la branche main :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commit 1 -&gt; commit 2 -&gt; commit 3</span><br><span class="line">316e63c     ab0f801     3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Mais vous voulez obtenir sur la branche <code>HF</code> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commits 1 + 2 + 3</span><br><span class="line">xxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>La commande git <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-cherry-pick">cherry-pick</a> permet d’appliquer les changements d’un set de commits sans les enregistrer, avec le flag <code>-n</code> :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick -n 316e63c ab0f801 3ae6aa6</span><br></pre></td></tr></table></figure>
+
+<p>Les changements sont dans le stage de git, il ne reste plus qu’à faire le commit avec un nouveau message probablement plus approprié pour une branche de hotfix.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckrkrc6lu00068inc7wcg2fzb" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Sucre-syntaxique-des-constructeurs-Typescript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" class="article-date">
@@ -110,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckpxlpay200108fnfgaapdhmb" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckrkrc6md00158incfw8c4gj4" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -155,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckpxlpaxd00018fnfb9oz8iyl" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckrkrc6ln00018inchilhdkpn" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -185,7 +237,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -195,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
     </div>
   </div>
 
@@ -206,6 +258,10 @@
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/07/26/SQL-Window-functions-et-aggregation-functions/">SQL - Window functions et aggregation functions</a>
+          </li>
         
           <li>
             <a href="/2021/06/14/Csharp-la-base-de-l-asynchrone/">C# : la base de l&#39;asynchrone</a>
@@ -221,10 +277,6 @@
         
           <li>
             <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/">CSS : comprendre les ellipses de texte</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/">Vim : plus de flexibilité avec vim-surround</a>
           </li>
         
       </ul>
