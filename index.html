@@ -102,7 +102,7 @@
 <p>Les window function permettent de faire à peu près la même chose, sauf qu’elles agissent a posteriori et peuvent permettre d’éviter de tomber dans l’utilisation de requêtes imbriquées qui sont plutôt moins performantes.</p>
 <p>Dans ce billet, pour introduire la notion de window function, je vais présenter un problème que j’ai rencontré dans un projet perso. Je vais tout d’abord décrire le jeu de données utilisé, mon approche initiale et l’approche <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68525988/how-to-avoid-using-a-subquery-for-exclusion-in-a-many-to-many-sql-model">qui m’a été soufflée par un chic type sur stackoverflow</a>. Malgré toute la justesse de sa réponse, elle était quand même plutôt expédiée (note : insérer ici un commentaire sur la course à la réputation dans le site stackoverflow) ; cela m’a amené à mener ma petit enquête et ce billet est né.</p>
 <h2 id="Le-contexte"><a href="#Le-contexte" class="headerlink" title="Le contexte"></a>Le contexte</h2><p>Notre blog de vidéos rigolotes nécéssite trois tables SQL afin de représenter le fait que les <code>posts</code> créés sont associés à des <code>tags</code>. </p>
-<p><img src="/diagram.png"></p>
+<p><img src="/2021/07/26/SQL-Window-functions-et-aggregation-functions/diagram.png"></p>
 <p>Par exemple, pour créer un billet de blog “Chicken flying over a cucumber”, je vais créer une entrée dans la table <code>posts</code>, trois entrées dans la table <code>tags</code> (“chicken”, “funny”, “cucumber”) et trois entrées dans une table d’association <code>poststags</code> connectant le tout. </p>
 <p> ℹ️ Une table d’association est ici nécéssaire pour représenter une relation de type “many-to-many” entre <code>posts</code> et <code>tags</code> car un post peut avoir plusieurs tags et un tag peut décorer plusieurs posts.</p>
 <p>Pendant plusieurs mois, je remplis mon blog de supers vidéos, tout va bien même si mes choix éditoriaux ne m’amènent que peu de visites mais ce n’est pas le sujet de cet article.</p>
@@ -418,7 +418,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckrkrc6me00168inc2uwd3vbq" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckrkrek88000b85nbcttd6ks9" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
       
       
       
@@ -488,7 +488,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckrkrc6lr00048inc6k9naklp" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckrkrek7y000485nb0qnhca7w" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
       
       
       
@@ -535,7 +535,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckrkrc6m8000q8incb70qcq00" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckrkrek8i000n85nbci3e37z4" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -592,7 +592,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckrkrc6lv00078inc4co6em84" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckrkrek84000785nbcz913hkx" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -653,7 +653,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckrkrc6lq00038incgr5yekz3" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckrkrek7w000385nbhyrjgy34" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -735,7 +735,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckrkrc6m6000n8inc1cg38mn8" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckrkrek8e000i85nbbzxd6x1k" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -789,7 +789,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckrkrc6lw00088inc9afjbmki" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckrkrek85000885nb5bua0wg6" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -841,7 +841,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckrkrc6m4000l8incc6paa1jr" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckrkrek8d000f85nbbwgqf8vv" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -887,7 +887,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckrkrc6m7000p8inc51fx8iiz" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckrkrek8g000k85nbbslteohz" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -946,7 +946,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckrkrc6m4000k8inc0cul8ngz" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckrkrek87000a85nbayepa57g" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
