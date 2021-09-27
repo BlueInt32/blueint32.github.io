@@ -76,6 +76,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Csharp-Index-dans-foreach" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/27/Csharp-Index-dans-foreach/" class="article-date">
+  <time class="dt-published" datetime="2021-09-27T06:57:57.000Z" itemprop="datePublished">2021-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/27/Csharp-Index-dans-foreach/">C#: astuce avec foreach</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA que l’on pouvait obtenir l’index dans une boucle foreach d’une façon assez pratique sans avoir à incrémenter un compteur à la main (ce qui est vulgaire 😏). La fonction Select de Linq possède en effet <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.select?view=net-5.0#System_Linq_Enumerable_Select__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Int32___1__">un overload</a> qui prend une lambda prenant en charge l’index de boucle.</p>
+<p>Avant C#7:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>(<span class="keyword">var</span> item <span class="keyword">in</span> inputList.Select((wheel, i) =&gt; <span class="keyword">new</span> &#123; wheel, i&#125;)) &#123;</span><br><span class="line">	Console.WriteLine(<span class="string">$&quot;Wheel n°<span class="subst">&#123;item.i + <span class="number">1</span>&#125;</span> : <span class="subst">&#123;item.wheel.friction&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Mais ce n’est pas super car on se trimballe un <code>item</code> dont on se passerait bien.</p>
+<p>Heureusement, depuis C#7 (avec <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/deconstruct">la déconstruction de Tuples</a>), on peut directement assigner les variables :</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>((Wheel wheel, <span class="built_in">int</span> i) <span class="keyword">in</span> inputList.Select((<span class="keyword">value</span>, i) =&gt; (wheel, i))) &#123;</span><br><span class="line">	Console.WriteLine(<span class="string">$&quot;Numero <span class="subst">&#123;i + <span class="number">1</span>&#125;</span> : <span class="subst">&#123;wheel.friction&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="cku2bmi3f000496n433087ik7" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-SQL-Window-functions-et-aggregation-functions" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/07/26/SQL-Window-functions-et-aggregation-functions/" class="article-date">
@@ -418,7 +464,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckrkrek88000b85nbcttd6ks9" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="cku2bmi44000v96n461lfcae0" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
       
       
       
@@ -488,7 +534,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckrkrek7y000485nb0qnhca7w" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="cku2bmi3i000696n4c2228dku" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
       
       
       
@@ -535,7 +581,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckrkrek8i000n85nbci3e37z4" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="cku2bmi42000s96n41rrw6czw" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -592,7 +638,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckrkrek84000785nbcz913hkx" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="cku2bmi3l000896n45grh7p5b" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -653,7 +699,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckrkrek7w000385nbhyrjgy34" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="cku2bmi3d000396n47ahre7c2" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -735,7 +781,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckrkrek8e000i85nbbzxd6x1k" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="cku2bmi3z000p96n4esmqfm6m" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -789,7 +835,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckrkrek85000885nb5bua0wg6" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="cku2bmi3u000k96n4cx3w5yvq" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -841,7 +887,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckrkrek8d000f85nbbwgqf8vv" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="cku2bmi3w000n96n46dnsc1gr" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -887,70 +933,11 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckrkrek8g000k85nbbslteohz" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="cku2bmi40000r96n493b0777e" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Recuperation-de-la-branche-active-dans-bash" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" class="article-date">
-  <time class="dt-published" datetime="2021-05-05T17:31:54.000Z" itemprop="datePublished">2021-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/">git bash : Injection du nom de la branche git active</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>AJA que je pouvais économiser 4 secondes à chaque fois que je veux <code>push</code> une branche à distance !</p>
-<p>En effet, dans le cadre profesionnel, je suis souvent amené à créer des noms de branches du genre :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -d JIRA-14523-nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
-
-<p>Pour créer la branche, je n’ai pas le choix, je dois tout écrire au moins une fois.</p>
-<p>Mais à la fin de la journée, je trouve pénible de devoir le retaper, typiquement lorsque je dois <code>push</code> ma branche pour faire la pull-request :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
-
-<p>Dans git bash, le nom de la branche courante est affiché dans le prompt donc je peux toujours la copier/coller, mais je préfère garder les mains sur le clavier quand j’utilise le terminal.</p>
-<p>Pour régler ce grave problème 😏, on peut créer un alias dans le fichier <code>.bashrc</code> du compte de la machine :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> cb=<span class="string">&#x27;git symbolic-ref HEAD --short&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>Ce qui permet de récupérer le nom de la branche courante sans le retaper :</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cb</span></span><br><span class="line">JIRA-14523-nom-de-nouvelle-branche-tres-tres-long</span><br></pre></td></tr></table></figure>
-
-<p>En revanche, il n’est pas possible d’injecter tel quel cet alias dans une commande git car git penserait qu’il s’agit d’un nom de branche et va remonter une erreur. Pour palier à cela, il suffit d’entourer l’alias avec des `backquotes` :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin `cb`</span><br></pre></td></tr></table></figure>
-
-<p>Et voilà, plus besoin de prendre la souris pour copier le nom de la branche !</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckrkrek87000a85nbayepa57g" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
 
     </footer>
   </div>
@@ -988,7 +975,7 @@ table {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">septembre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
     </div>
   </div>
 
@@ -999,6 +986,10 @@ table {
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/09/27/Csharp-Index-dans-foreach/">C#: astuce avec foreach</a>
+          </li>
         
           <li>
             <a href="/2021/07/26/SQL-Window-functions-et-aggregation-functions/">SQL - Window functions et aggregation functions</a>
@@ -1014,10 +1005,6 @@ table {
         
           <li>
             <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/">JS : une syntaxe marrante pour filtrer</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/15/CSS-comprendre-les-ellipses-de-texte/">CSS : comprendre les ellipses de texte</a>
           </li>
         
       </ul>
