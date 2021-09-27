@@ -105,10 +105,13 @@
 <p>Mais ce n’est pas super car on se trimballe un <code>item</code> dont on se passerait bien.</p>
 <p>Heureusement, depuis C#7 (avec <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/deconstruct">la déconstruction de Tuples</a>), on peut directement assigner les variables :</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>((Wheel wheel, <span class="built_in">int</span> i) <span class="keyword">in</span> inputList.Select((<span class="keyword">value</span>, i) =&gt; (wheel, i))) &#123;</span><br><span class="line">	Console.WriteLine(<span class="string">$&quot;Numero <span class="subst">&#123;i + <span class="number">1</span>&#125;</span> : <span class="subst">&#123;wheel.friction&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Attention cependant, ça peut vite nuire à la lisibilité du code car on est forcé de spécifier les types et l’instruction foreach devient vite indigeste sur une ligne.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="cku2bmi3f000496n433087ik7" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="cku2d7mru00048kor5m7y683p" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
       
       
       
@@ -464,7 +467,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="cku2bmi44000v96n461lfcae0" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="cku2d7ms4000f8korelt15z5k" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
       
       
       
@@ -534,7 +537,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="cku2bmi3i000696n4c2228dku" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="cku2d7mry00078kor9av76b28" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
       
       
       
@@ -581,7 +584,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="cku2bmi42000s96n41rrw6czw" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="cku2d7ms8000n8korf04dfph9" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -638,7 +641,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="cku2bmi3l000896n45grh7p5b" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="cku2d7mrz00088kor6kh6g8ei" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -699,7 +702,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="cku2bmi3d000396n47ahre7c2" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="cku2d7mrs00038korgm58de24" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -781,7 +784,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="cku2bmi3z000p96n4esmqfm6m" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="cku2d7ms7000k8korcxzo28en" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -835,7 +838,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="cku2bmi3u000k96n4cx3w5yvq" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="cku2d7ms0000a8kor5nmse28r" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -887,7 +890,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="cku2bmi3w000n96n46dnsc1gr" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="cku2d7ms6000i8kor5lmg6ti6" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
@@ -933,7 +936,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="cku2bmi40000r96n493b0777e" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="cku2d7msa000p8kor4c84h5yg" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
