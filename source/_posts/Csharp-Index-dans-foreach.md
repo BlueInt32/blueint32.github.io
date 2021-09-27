@@ -24,3 +24,5 @@ foreach((Wheel wheel, int i) in inputList.Select((value, i) => (wheel, i))) {
 	Console.WriteLine($"Numero {i + 1} : {wheel.friction}");
 }
 ```
+
+Attention cependant, ça peut vite nuire à la lisibilité du code car on est forcé de spécifier les types et l'instruction foreach devient vite indigeste sur une ligne.
