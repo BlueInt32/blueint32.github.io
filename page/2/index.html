@@ -76,6 +76,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-VueJs-et-les-Web-components" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/08/VueJs-et-les-Web-components/" class="article-date">
+  <time class="dt-published" datetime="2021-05-08T05:29:50.000Z" itemprop="datePublished">2021-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/08/VueJs-et-les-Web-components/">Les web components et les frameworks JS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA la distinction entre <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/components.html">un composant VueJs</a> et un <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</p>
+<p>Quand on démarre un projet en VueJs (ou React ou Angular), les composants que l’on crée sont écrits dans la syntaxe propre à ce framework. C’est efficace si l’on travaille toujours dans ce framework, on peut par exemple réutiliser <a target="_blank" rel="noopener" href="https://vuejsexamples.com/tag/switch/">notre module VueSwitch</a> entre plusieurs projets VueJs. Mais ces composants ne sont pas directement réutilisables dans d’autres projets n’utilisant pas VueJs. C’est un problème que les web components natifs peuvent résoudre.</p>
+<p>En effet, les web components constituent une technologie native des navigateurs web et ne dépendent pas d’un framework javascript particulier pour fonctionner. Ils peuvent encapsuler leur code HTML, JS, CSS propres, en isolation (c’est à dire qu’il n’y aura par exemple pas de conflit entre le CSS défini dans ce web component et le CSS de la page qui l’héberge).</p>
+<p>Il n’est pas forcément très pratique de définir un web component à partir de rien : toute la logique doit être développée sur place et cela peut s’avérer fastidieux en mode “Vanilla JS”, a fortiori sans l’assistance d’un framework tel que VueJs embarquant des utilitaires pour la réactivité et le concept de cycle de vie, par exemple .</p>
+<p>Enfin, le CLI de VueJs embarque <a target="_blank" rel="noopener" href="https://cli.vuejs.org/guide/build-targets.html#web-component">la possibilité d’extraire un web component à partir d’un composant VueJs</a> mais ce composant aura toujours une dépendance sur le framework VueJs, ce qui perd beaucoup de son intérêt.</p>
+<p>Chez Github, ils ont fait le choix de <a target="_blank" rel="noopener" href="https://github.blog/2021-05-04-how-we-use-web-components-at-github/">développer directement en natif</a>, ce qui ne les enferme pas trop dans un paradigme de programmation Front-end, mais à quel prix ?</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckv14dk4h000i9cna6tbd4opu" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Recuperation-de-la-branche-active-dans-bash" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" class="article-date">
@@ -121,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="cku2d7ms1000b8kor7hd83w36" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckv14dk4t00179cna6hnn7qp9" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -173,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="cku2d7mrx00068kor1ojn5w2g" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckv14dk4800079cna89i9ec1q" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -221,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="cku2d7ms3000d8koraqfuhonn" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckv14dk4b000b9cna3z414x2v" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -266,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="cku2d7mrp00018koracutgoyj" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckv14dk3y00019cna1zl5791h" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -306,7 +352,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">septembre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">octobre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">septembre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
     </div>
   </div>
 
@@ -317,6 +363,10 @@
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/21/JS-suppression-d-une-propriete/">JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet</a>
+          </li>
         
           <li>
             <a href="/2021/09/27/Csharp-Index-dans-foreach/">C#: astuce avec foreach</a>
@@ -332,10 +382,6 @@
         
           <li>
             <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/">HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/">JS : une syntaxe marrante pour filtrer</a>
           </li>
         
       </ul>

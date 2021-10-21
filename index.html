@@ -76,6 +76,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-suppression-d-une-propriete" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/21/JS-suppression-d-une-propriete/" class="article-date">
+  <time class="dt-published" datetime="2021-10-21T15:11:06.000Z" itemprop="datePublished">2021-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/21/JS-suppression-d-une-propriete/">JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA qu’il existait une manière assez intriguante de retirer une propriété d’un objet en JS : </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">prop1</span>: <span class="string">&#x27;hey&#x27;</span>, <span class="attr">prop2</span>: <span class="string">&#x27;ho&#x27;</span> &#125;;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">obj = (<span class="function">(<span class="params">&#123; prop2, ...o &#125;</span>) =&gt;</span> o)(obj);</span><br><span class="line"><span class="comment">// équivaut à </span></span><br><span class="line"><span class="keyword">delete</span> obj.prop2;</span><br></pre></td></tr></table></figure>
+
+<p>Si on regarde bien ce “one-liner”, on a une lambda qui pourrait être extraite comme ceci : </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">prop1</span>: <span class="string">&#x27;hey&#x27;</span>, <span class="attr">prop2</span>: <span class="string">&#x27;ho&#x27;</span> &#125;;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">obj = prop2Remover(obj);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop2Remover</span>(<span class="params">&#123; prop2, ...o &#125;</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>On voit une utilisation plutôt élégante et combinée de l’<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">object destructuring</a> et de la syntaxe <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread</a>, que l’on pourrait encore décortiquer davantage :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">prop1</span>: <span class="string">&#x27;hey&#x27;</span>, <span class="attr">prop2</span>: <span class="string">&#x27;ho&#x27;</span> &#125;;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">obj = prop2Remover(obj);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prop2Remover</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// le pattern matching va chercher la propriété prop2 dans obj </span></span><br><span class="line">	<span class="comment">// et le spread operator va assigner tout le reste de obj à o !</span></span><br><span class="line">	<span class="keyword">const</span> &#123; prop2, ...o &#125; = obj;</span><br><span class="line">	<span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Cette syntaxe peut paraître un peu cuistre par rapport au <code>delete</code>, mais on peut quand même y trouver un intérêt. Par exemple si l’on veut assigner l’objet “nettoyé” en une seule instruction. De plus, l’opérateur spread effectue une nouvelle copie ce qui n’est pas à négliger dans certains contextes par exemple vuex ou redux.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">prop1</span>: <span class="string">&#x27;hey&#x27;</span>, <span class="attr">prop2</span>: <span class="string">&#x27;ho&#x27;</span> &#125;;</span><br><span class="line"><span class="comment">// une seule instruction pour &#x27;clean up&#x27; l&#x27;objet obj et l&#x27;assigner dans otherObj</span></span><br><span class="line"><span class="keyword">const</span> otherObj = &#123;</span><br><span class="line">	otherProp1: <span class="string">&#x27;lol&#x27;</span>,</span><br><span class="line">	otherProp2: (<span class="function">(<span class="params">&#123; prop2, ...o &#125;</span>) =&gt;</span> o)(obj)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Mais bon, autrement, c’est vraiment pour frimer ! 😃</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/10/21/JS-suppression-d-une-propriete/" data-id="ckv14dk4900089cnag4y531mr" data-title="JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/" rel="tag">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Csharp-Index-dans-foreach" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/09/27/Csharp-Index-dans-foreach/" class="article-date">
@@ -111,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="cku2d7mru00048kor5m7y683p" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="ckv14dk4300049cna556zc3r2" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
       
       
       
@@ -467,7 +520,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="cku2d7ms4000f8korelt15z5k" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckv14dk4v001a9cnae4an5g67" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
       
       
       
@@ -537,7 +590,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="cku2d7mry00078kor9av76b28" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckv14dk4600069cna0zo72d2v" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
       
       
       
@@ -584,7 +637,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="cku2d7ms8000n8korf04dfph9" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckv14dk4j000k9cna24vw2y6q" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -641,7 +694,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="cku2d7mrz00088kor6kh6g8ei" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckv14dk4a000a9cna029d8fuq" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -702,7 +755,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="cku2d7mrs00038korgm58de24" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckv14dk4100039cna05uqc6w7" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -784,7 +837,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="cku2d7ms7000k8korcxzo28en" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckv14dk4f000f9cna2fww74wm" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -838,7 +891,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="cku2d7ms0000a8kor5nmse28r" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckv14dk4u00189cnahle7373e" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
@@ -890,57 +943,11 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="cku2d7ms6000i8kor5lmg6ti6" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckv14dk4d000d9cna4h6wdhfi" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-VueJs-et-les-Web-components" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/08/VueJs-et-les-Web-components/" class="article-date">
-  <time class="dt-published" datetime="2021-05-08T05:29:50.000Z" itemprop="datePublished">2021-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/05/08/VueJs-et-les-Web-components/">Les web components et les frameworks JS</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>AJA la distinction entre <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/components.html">un composant VueJs</a> et un <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</p>
-<p>Quand on démarre un projet en VueJs (ou React ou Angular), les composants que l’on crée sont écrits dans la syntaxe propre à ce framework. C’est efficace si l’on travaille toujours dans ce framework, on peut par exemple réutiliser <a target="_blank" rel="noopener" href="https://vuejsexamples.com/tag/switch/">notre module VueSwitch</a> entre plusieurs projets VueJs. Mais ces composants ne sont pas directement réutilisables dans d’autres projets n’utilisant pas VueJs. C’est un problème que les web components natifs peuvent résoudre.</p>
-<p>En effet, les web components constituent une technologie native des navigateurs web et ne dépendent pas d’un framework javascript particulier pour fonctionner. Ils peuvent encapsuler leur code HTML, JS, CSS propres, en isolation (c’est à dire qu’il n’y aura par exemple pas de conflit entre le CSS défini dans ce web component et le CSS de la page qui l’héberge).</p>
-<p>Il n’est pas forcément très pratique de définir un web component à partir de rien : toute la logique doit être développée sur place et cela peut s’avérer fastidieux en mode “Vanilla JS”, a fortiori sans l’assistance d’un framework tel que VueJs embarquant des utilitaires pour la réactivité et le concept de cycle de vie, par exemple .</p>
-<p>Enfin, le CLI de VueJs embarque <a target="_blank" rel="noopener" href="https://cli.vuejs.org/guide/build-targets.html#web-component">la possibilité d’extraire un web component à partir d’un composant VueJs</a> mais ce composant aura toujours une dépendance sur le framework VueJs, ce qui perd beaucoup de son intérêt.</p>
-<p>Chez Github, ils ont fait le choix de <a target="_blank" rel="noopener" href="https://github.blog/2021-05-04-how-we-use-web-components-at-github/">développer directement en natif</a>, ce qui ne les enferme pas trop dans un paradigme de programmation Front-end, mais à quel prix ?</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="cku2d7msa000p8kor4c84h5yg" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
 
     </footer>
   </div>
@@ -978,7 +985,7 @@ table {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">septembre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">octobre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">septembre 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">juillet 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">juin 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">mai 2021</a></li></ul>
     </div>
   </div>
 
@@ -989,6 +996,10 @@ table {
     <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/21/JS-suppression-d-une-propriete/">JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet</a>
+          </li>
         
           <li>
             <a href="/2021/09/27/Csharp-Index-dans-foreach/">C#: astuce avec foreach</a>
@@ -1004,10 +1015,6 @@ table {
         
           <li>
             <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/">HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/">JS : une syntaxe marrante pour filtrer</a>
           </li>
         
       </ul>
