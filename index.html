@@ -76,6 +76,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS-margin-flex-et-only-child" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/27/CSS-margin-flex-et-only-child/" class="article-date">
+  <time class="dt-published" datetime="2021-10-27T13:48:17.000Z" itemprop="datePublished">2021-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/27/CSS-margin-flex-et-only-child/">CSS : margin, flex et sélecteur :only-child</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA qu’il existait un lien et des règles spécifiques d’interaction entre <code>display: flex;</code> et <code>margin:auto;</code> en CSS - alors qu’a priori on pourrait penser que ça ne va pas du tout fonctionner ensemble. Et puis JA aussi qu’il existait un selecteur css <code>:only-child</code>, ce qui est pratique mais plus anecdotique.</p>
+<p>Donnons-nous un exemple concret pour mettre tout cela en pratique.</p>
+<p>Supposons que vous voulions créer un footer de page contenant des boutons “Previous” et “Next”, par exemple pour une appli avec un wizard de création d’objet en plusieurs étapes.<br>Je veux afficher la bouton “Previous” complètement à gauche, et le bouton “Next” complètement à droite, comme ceci : </p>
+<p><img src="/2021/10/27/CSS-margin-flex-et-only-child/default.png"></p>
+<p>Pour cela, on utilise la structure HTML suivante (simplifiée).</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel footer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Previous&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Next&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Et le css suivant pour le footer :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">border-bottom-right-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border-bottom-left-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#255f7e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Super ! </p>
+<p>Sauf qu’un problème se pose pour la première étape, dans laquelle il n’y a pas de bouton “Previous”. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;panel footer&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--     &lt;input type=&quot;button&quot; value=&quot;Previous&quot; /&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Next&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Mon bouton “Next” se retrouve à gauche à cause du comportement par défaut de flex et du <code>justify-content: space-between;</code> :</p>
+<p><img src="/2021/10/27/CSS-margin-flex-et-only-child/issue.png"></p>
+<p>Pour régler ce problème, on va utiliser la capacité de margin combinée avec flex. </p>
+<p>Il faut savoir que l’utilisation d’une règle <code>margin: auto;</code> sur un item se trouvant dans un context “flex” va étendre la marge de cet item pour occuper toute la place disponible dans le conteneur, dans la direction spécifiée.<br>Cela veut dire que si on applique <code>margin-left: auto;</code> sur notre bouton “Next”, une marge de la largeur restante du conteneur va être placée à sa gauche, revenant à le placer sur la droite : </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=button]</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">3px</span> <span class="number">3px</span> <span class="number">0px</span> <span class="number">#255f7e</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#00a8ff</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  </span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/27/CSS-margin-flex-et-only-child/fix-1.png"></p>
+<p>C’est bien pratique ! Cela permet aussi de centrer des éléments, car si on ne donne pas de direction, la marge va être partagée dans les directions opposables et centrer l’élément naturellement. <a target="_blank" rel="noopener" href="https://css-tricks.com/the-peculiar-magic-of-flexbox-and-auto-margins/">Plus d’infos ici.</a></p>
+<p>Mais si on remet notre bouton “Previous”, on obtient un nouveau probleme - les deux boutons partagent l’espace horizontal disponible du conteneur pour leur marge de gauche : </p>
+<p><img src="/2021/10/27/CSS-margin-flex-et-only-child/issue-2.png"></p>
+<p>Il suffit donc d’appliquer le selecteur CSS <code>:only-child</code> et de n’appliquer la marge que là : </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=button]</span><span class="selector-pseudo">:only-child</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Et voilà !😃</p>
+<p><img src="/2021/10/27/CSS-margin-flex-et-only-child/fix-2.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/10/27/CSS-margin-flex-et-only-child/" data-id="ckv9nns5m00048hoge1hagee0" data-title="CSS : margin, flex et sélecteur :only-child" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-JS-suppression-d-une-propriete" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/21/JS-suppression-d-une-propriete/" class="article-date">
@@ -115,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/10/21/JS-suppression-d-une-propriete/" data-id="ckv14dk4900089cnag4y531mr" data-title="JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/10/21/JS-suppression-d-une-propriete/" data-id="ckv9nns61000k8hoga24x8fh8" data-title="JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet" class="article-share-link">Partager</a>
       
       
       
@@ -164,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="ckv14dk4300049cna556zc3r2" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/" data-id="ckv9nns5p00068hog4lojhn6g" data-title="C#: astuce avec foreach" class="article-share-link">Partager</a>
       
       
       
@@ -520,7 +589,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckv14dk4v001a9cnae4an5g67" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/" data-id="ckv9nns63000n8hogg3hlhybd" data-title="SQL - Window functions et aggregation functions" class="article-share-link">Partager</a>
       
       
       
@@ -590,7 +659,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckv14dk4600069cna0zo72d2v" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/" data-id="ckv9nns5q00078hoggof13ovs" data-title="C# : la base de l&#39;asynchrone" class="article-share-link">Partager</a>
       
       
       
@@ -637,7 +706,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckv14dk4j000k9cna24vw2y6q" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/" data-id="ckv9nns6a000w8hog5x5c32i8" data-title="HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser" class="article-share-link">Partager</a>
       
       
       
@@ -694,7 +763,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckv14dk4a000a9cna029d8fuq" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/" data-id="ckv9nns6c00118hog38pr41mf" data-title="JS : une syntaxe marrante pour filtrer" class="article-share-link">Partager</a>
       
       
       
@@ -755,7 +824,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckv14dk4100039cna05uqc6w7" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/" data-id="ckv9nns5l00038hog1dkedhwa" data-title="CSS : comprendre les ellipses de texte" class="article-share-link">Partager</a>
       
       
       
@@ -837,7 +906,7 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckv14dk4f000f9cna2fww74wm" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/" data-id="ckv9nns67000s8hogf1618fzk" data-title="Vim : plus de flexibilité avec vim-surround" class="article-share-link">Partager</a>
       
       
       
@@ -891,63 +960,11 @@ table {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckv14dk4u00189cnahle7373e" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/" data-id="ckv9nns6b000y8hogfkndecyr" data-title="git add -N : marquer des fichiers pour ajout" class="article-share-link">Partager</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Syntaxe-alternative-pour-tests-exceptions-csharp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" class="article-date">
-  <time class="dt-published" datetime="2021-05-12T06:36:56.000Z" itemprop="datePublished">2021-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/">C# : Syntaxe alternative pour les tests d&#39;exception</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>AJA qu’il existait une alternative pour tester les exceptions en C#. Depuis toujours j’utilisais la syntaxe suivante :</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> c = a / b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Cette syntaxe est assez limitée car elle ne permet pas d’effectuer d’assertions sur l’exception levée pendant l’exécution du test.</p>
-<p>Certes, on peut insérer un bloc try/catch et effectuer des assertions comme ceci:</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;</span><br><span class="line">    catch(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, e.Message);</span><br><span class="line">        <span class="keyword">throw</span>; <span class="comment">// throw nécéssaire pour que le décorateur Expected soit honoré</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Mais ce n’est pas très élégant 😢.</p>
-<p>Or il existe une autre syntaxe bien plus pratique :</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ex = Assert.ThrowsException&lt;DivideByZeroException&gt;(() =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;);</span><br><span class="line">    Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, ex.Message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>La lisibilité des tests est améliorée, les code reviews sont plus sereines et le monde se porte mieux. 🌈</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckv14dk4d000d9cna4h6wdhfi" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
 
     </footer>
   </div>
@@ -975,7 +992,7 @@ table {
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -998,6 +1015,10 @@ table {
       <ul>
         
           <li>
+            <a href="/2021/10/27/CSS-margin-flex-et-only-child/">CSS : margin, flex et sélecteur :only-child</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/21/JS-suppression-d-une-propriete/">JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet</a>
           </li>
         
@@ -1011,10 +1032,6 @@ table {
         
           <li>
             <a href="/2021/06/14/Csharp-la-base-de-l-asynchrone/">C# : la base de l&#39;asynchrone</a>
-          </li>
-        
-          <li>
-            <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/">HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</a>
           </li>
         
       </ul>

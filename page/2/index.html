@@ -76,6 +76,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Syntaxe-alternative-pour-tests-exceptions-csharp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" class="article-date">
+  <time class="dt-published" datetime="2021-05-12T06:36:56.000Z" itemprop="datePublished">2021-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/">C# : Syntaxe alternative pour les tests d&#39;exception</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AJA qu’il existait une alternative pour tester les exceptions en C#. Depuis toujours j’utilisais la syntaxe suivante :</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> c = a / b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Cette syntaxe est assez limitée car elle ne permet pas d’effectuer d’assertions sur l’exception levée pendant l’exécution du test.</p>
+<p>Certes, on peut insérer un bloc try/catch et effectuer des assertions comme ceci:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line">[<span class="meta">ExpectedException(typeof(DivideByZeroException))</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;</span><br><span class="line">    catch(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, e.Message);</span><br><span class="line">        <span class="keyword">throw</span>; <span class="comment">// throw nécéssaire pour que le décorateur Expected soit honoré</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Mais ce n’est pas très élégant 😢.</p>
+<p>Or il existe une autre syntaxe bien plus pratique :</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">TestMethod</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Division_ShouldThrowIfDividedByZero</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ex = Assert.ThrowsException&lt;DivideByZeroException&gt;(() =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> c = a / b;</span><br><span class="line">    &#125;);</span><br><span class="line">    Assert.AreEqual(<span class="string">&quot;Attempted to divide by zero.&quot;</span>, ex.Message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>La lisibilité des tests est améliorée, les code reviews sont plus sereines et le monde se porte mieux. 🌈</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/" data-id="ckv9nns66000p8hogg0ykgxpz" data-title="C# : Syntaxe alternative pour les tests d&#39;exception" class="article-share-link">Partager</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-VueJs-et-les-Web-components" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/05/08/VueJs-et-les-Web-components/" class="article-date">
@@ -108,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckv14dk4h000i9cna6tbd4opu" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/" data-id="ckv9nns68000u8hog6nbye7vs" data-title="Les web components et les frameworks JS" class="article-share-link">Partager</a>
       
       
       
@@ -167,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckv14dk4t00179cna6hnn7qp9" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/" data-id="ckv9nns62000l8hog2anydulv" data-title="git bash : Injection du nom de la branche git active" class="article-share-link">Partager</a>
       
       
       
@@ -219,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckv14dk4800079cna89i9ec1q" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/" data-id="ckv9nns5r00088hogdfch1atk" data-title="git cherry-pick -n : Rapatrier et faire un squash de plusieurs commits" class="article-share-link">Partager</a>
       
       
       
@@ -267,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckv14dk4b000b9cna3z414x2v" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/" data-id="ckv9nns65000o8hog1mes9t7s" data-title="Typescript : Sucre syntaxique des constructeurs" class="article-share-link">Partager</a>
       
       
       
@@ -312,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckv14dk3y00019cna1zl5791h" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
+      <a data-url="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/" data-id="ckv9nns5i00018hog95nc92z2" data-title="Blog avec Hexo" class="article-share-link">Partager</a>
       
       
       
@@ -342,7 +394,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-components/" rel="tag">web components</a></li></ul>
     </div>
   </div>
 
@@ -365,6 +417,10 @@
       <ul>
         
           <li>
+            <a href="/2021/10/27/CSS-margin-flex-et-only-child/">CSS : margin, flex et sélecteur :only-child</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/21/JS-suppression-d-une-propriete/">JS: Syntaxe cryptique pour supprimer une propriété d&#39;un objet</a>
           </li>
         
@@ -378,10 +434,6 @@
         
           <li>
             <a href="/2021/06/14/Csharp-la-base-de-l-asynchrone/">C# : la base de l&#39;asynchrone</a>
-          </li>
-        
-          <li>
-            <a href="/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/">HTML/JS : astuce pour générer un fichier téléchargeable depuis le browser</a>
           </li>
         
       </ul>
