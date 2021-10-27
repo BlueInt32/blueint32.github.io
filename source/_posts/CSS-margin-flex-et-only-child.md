@@ -95,3 +95,6 @@ Et voilà !😃
 
 ![](fix-2.png)
 
+Et ne me remerciez pas pour la beauté du design, c'est cadeau !
+
+[Le code-pen pour faire joujou](https://codepen.io/BlueInt32/pen/ZEJKgXw)
