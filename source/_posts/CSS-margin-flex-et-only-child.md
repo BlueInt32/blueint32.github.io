@@ -1,7 +1,7 @@
 ---
 title: 'CSS : margin, flex et sélecteur :only-child'
 date: 2021-10-27 15:48:17
-tags: CSS
+tags: css
 ---
 
 AJA qu'il existait un lien et des règles spécifiques d'interaction entre `display: flex;` et `margin:auto;` en CSS - alors qu'a priori on pourrait penser que ça ne va pas du tout fonctionner ensemble. Et puis JA aussi qu'il existait un selecteur css `:only-child`, ce qui est pratique mais plus anecdotique.
