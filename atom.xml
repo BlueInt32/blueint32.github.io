@@ -6,7 +6,7 @@
   <link href="http://blueint32.github.io/atom.xml" rel="self"/>
   
   <link href="http://blueint32.github.io/"/>
-  <updated>2021-10-27T15:17:04.971Z</updated>
+  <updated>2021-12-10T11:49:58.393Z</updated>
   <id>http://blueint32.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blueint32.github.io/2021/10/27/CSS-margin-flex-et-only-child/"/>
     <id>http://blueint32.github.io/2021/10/27/CSS-margin-flex-et-only-child/</id>
     <published>2021-10-27T13:48:17.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -35,7 +35,7 @@
     
     
     
-    <category term="CSS" scheme="http://blueint32.github.io/tags/CSS/"/>
+    <category term="css" scheme="http://blueint32.github.io/tags/css/"/>
     
   </entry>
   
@@ -44,7 +44,7 @@
     <link href="http://blueint32.github.io/2021/10/21/JS-suppression-d-une-propriete/"/>
     <id>http://blueint32.github.io/2021/10/21/JS-suppression-d-une-propriete/</id>
     <published>2021-10-21T15:11:06.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -68,7 +68,7 @@
     <link href="http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/"/>
     <id>http://blueint32.github.io/2021/09/27/Csharp-Index-dans-foreach/</id>
     <published>2021-09-27T06:57:57.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -91,7 +91,7 @@
     <link href="http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/"/>
     <id>http://blueint32.github.io/2021/07/26/SQL-Window-functions-et-aggregation-functions/</id>
     <published>2021-07-26T10:11:20.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -114,7 +114,7 @@
     <link href="http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/"/>
     <id>http://blueint32.github.io/2021/06/14/Csharp-la-base-de-l-asynchrone/</id>
     <published>2021-06-14T05:01:14.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -137,7 +137,7 @@
     <link href="http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/"/>
     <id>http://blueint32.github.io/2021/06/01/html-js-astuce-pour-telecharger-un-fichier-depuis-le-browser/</id>
     <published>2021-06-01T06:58:08.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -162,7 +162,7 @@
     <link href="http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/"/>
     <id>http://blueint32.github.io/2021/05/15/JS-une-syntaxe-marrante-pour-filtrer/</id>
     <published>2021-05-15T15:01:58.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -186,7 +186,7 @@
     <link href="http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/"/>
     <id>http://blueint32.github.io/2021/05/15/CSS-comprendre-les-ellipses-de-texte/</id>
     <published>2021-05-15T07:04:22.000Z</published>
-    <updated>2021-10-27T15:17:04.967Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -211,7 +211,7 @@
     <link href="http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/"/>
     <id>http://blueint32.github.io/2021/05/15/Vim-plus-de-flexibilite-avec-vim-surround/</id>
     <published>2021-05-15T06:19:31.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -236,7 +236,7 @@
     <link href="http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/"/>
     <id>http://blueint32.github.io/2021/05/12/Le-flag-intent-to-add-dans-git-add/</id>
     <published>2021-05-12T06:56:51.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -259,7 +259,7 @@
     <link href="http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/"/>
     <id>http://blueint32.github.io/2021/05/12/Syntaxe-alternative-pour-tests-exceptions-csharp/</id>
     <published>2021-05-12T06:36:56.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -283,7 +283,7 @@
     <link href="http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/"/>
     <id>http://blueint32.github.io/2021/05/08/VueJs-et-les-Web-components/</id>
     <published>2021-05-08T05:29:50.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -310,7 +310,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/"/>
     <id>http://blueint32.github.io/2021/05/05/Recuperation-de-la-branche-active-dans-bash/</id>
     <published>2021-05-05T17:31:54.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -336,7 +336,7 @@
     <link href="http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/"/>
     <id>http://blueint32.github.io/2021/05/05/Git-squash-sur-plusieurs-commits/</id>
     <published>2021-05-05T17:18:13.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -359,7 +359,7 @@
     <link href="http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/"/>
     <id>http://blueint32.github.io/2021/05/04/Sucre-syntaxique-des-constructeurs-Typescript/</id>
     <published>2021-05-04T03:32:01.000Z</published>
-    <updated>2021-10-27T15:17:04.971Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
@@ -382,7 +382,7 @@
     <link href="http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/"/>
     <id>http://blueint32.github.io/2021/05/03/Blog%20avec%20Hexo/</id>
     <published>2021-05-03T05:04:45.000Z</published>
-    <updated>2021-10-27T15:17:04.967Z</updated>
+    <updated>2021-12-10T11:49:58.393Z</updated>
     
     
       
