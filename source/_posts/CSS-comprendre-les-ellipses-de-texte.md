@@ -50,3 +50,5 @@ Ce qu'il faut retenir de tout ça, c'est que cette dernière règle seule ne se 
 Le code des exemples se trouve dans ce [codepen](https://codepen.io/BlueInt32/pen/GRWZVaR).
 
 Sinon, vous trouverez plus de détail sur `text-overflow` dans l'excellente documentation [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow).
+
+Edition du 14 Mai 2022 : un super article est sorti sur codersblock.com qui rentre beaucoup plus dans le détail de comment couper du texte en css. Un doit-lire pour connaître le sujet sur le bout des doigts : https://codersblock.com/blog/deep-dive-into-text-wrapping-and-word-breaking/
